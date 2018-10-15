@@ -1,0 +1,28 @@
+<h2>Notas</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Titulo</th>
+      <th>Cuerpo</th>
+      <th>Img</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let nota of notas">
+      <th scope="row">{{ nota.getId() }}</th>
+      <td>{{ nota.getTitulo() }}</td>
+      <td>{{ nota.getCuerpo() }}</td>
+      <td>{{ nota.getImg() }}</td>
+      <td>
+        <a class="btn btn-default" routerLink="show/{{ nota.getId() }}" routerLinkActive="active">Ver</a>
+        <a class="btn btn-warning" routerLink="edit/{{ nota.getId() }}" routerLinkActive="active">Editar</a>
+        <button type="button" class="btn btn-danger" (click)="deleteNota(nota.getId())">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<a class="btn btn-primary" routerLink="create" routerLinkActive="active">Crear nota</a>
