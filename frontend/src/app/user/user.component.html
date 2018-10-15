@@ -1,25 +1,69 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" routerLink="/" routerLinkActive="active">Agua Point</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" routerLink="/" routerLinkActive="active">Agua Point</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/" routerLinkActive="active">Inicio<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/notas" routerLinkActive="active">Notas</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/promociones" routerLinkActive="active">Promociones</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/pedido" routerLinkActive="active">Pedido</a>
-      </li>
-    </ul>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/" routerLinkActive="active">Inicio<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/notas" routerLinkActive="active">Notas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/promociones" routerLinkActive="active">Promociones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/pedido" routerLinkActive="active">Pedido</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="front-img">
+
   </div>
-</nav>
 
-<router-outlet></router-outlet>
+  <div class="bar-1"></div>
+  <div class="bar-2">
+    <div class="row">
+      <div class="col-3 card-1"></div>
+      <div class="col-3 card-1"></div>
+      <div class="col-3 card-1"></div>
+      <div class="col-3 card-1"></div>
+    </div>
+  </div>
+
+  <div class="bar-3">
+    <div class="row">
+      <div class="col-4 card-2"></div>
+      <div class="col-4 card-2"></div>
+      <div class="col-4 card-2"></div>
+      <div class="col-4 card-2"></div>
+      <div class="col-4 card-2"></div>
+      <div class="col-4 card-2"></div>
+    </div>
+  </div>
+
+  <div class="pedido">
+    <form>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
