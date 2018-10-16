@@ -9,7 +9,7 @@ import { Nota } from '../models/nota';
 @Injectable({
   providedIn: 'root'
 })
-export class NotasService {
+export class NotasService{
 
   private readonly NOTAS_URL='http://localhost/agua-poin/public/api/notas';
   private readonly HTTP_OPTIONS= {
@@ -84,6 +84,6 @@ export class NotasService {
 
   private log(message: string) {
 
-    this.messageService.add(`NotaService: ${message}`);
+    this.messageService.add(`NotasService: ${message}`);
   }//end log
 }//end NotasService

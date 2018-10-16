@@ -11,7 +11,7 @@ import { Nota } from '../../../models/nota';
 })
 export class ShowComponent implements OnInit {
 
-  nota: Nota;
+  private nota: Nota;
 
   constructor(
     private notasService: NotasService,

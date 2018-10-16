@@ -8,4 +8,4 @@ class Nota extends Model{
 
   protected $table= 'notas';
   protected $fillable= ['titulo', 'cuerpo', 'img'];
-}
+}//end Nota class

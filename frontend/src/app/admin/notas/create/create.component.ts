@@ -11,8 +11,8 @@ import { Nota } from '../../../models/nota';
 })
 export class CreateComponent implements OnInit {
 
-  titulo: string;
-  cuerpo: string;
+  private titulo: string;
+  private cuerpo: string;
 
   constructor(
     private notasService: NotasService,

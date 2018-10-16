@@ -1,0 +1,28 @@
+<h2>Productos</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nombre</th>
+      <th>Precio</th>
+      <th>Img</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let producto of productos">
+      <th scope="row">{{ producto.getId() }}</th>
+      <td>{{ producto.getNombre() }}</td>
+      <td>{{ producto.getPrecio() }}</td>
+      <td>{{ producto.getImg() }}</td>
+      <td>
+        <a class="btn btn-default" routerLink="show/{{ producto.getId() }}" routerLinkActive="active">Ver</a>
+        <a class="btn btn-warning" routerLink="edit/{{ producto.getId() }}" routerLinkActive="active">Editar</a>
+        <button type="button" class="btn btn-danger" (click)="deleteProducto(producto.getId())">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<a class="btn btn-primary" routerLink="create" routerLinkActive="active">Crear producto</a>

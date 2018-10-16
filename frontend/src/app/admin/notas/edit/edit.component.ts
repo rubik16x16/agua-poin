@@ -12,9 +12,9 @@ import { Nota } from '../../../models/nota';
 })
 export class EditComponent implements OnInit {
 
-  id: number;
-  titulo: string;
-  cuerpo: string;
+  private id: number;
+  private titulo: string;
+  private cuerpo: string;
 
   constructor(
     private route: ActivatedRoute,

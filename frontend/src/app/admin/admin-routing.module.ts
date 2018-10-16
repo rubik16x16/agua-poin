@@ -11,6 +11,10 @@ const routes: Routes = [
       {
         path: 'notas',
         loadChildren: './notas/notas.module#NotasModule'
+      },
+      {
+        path: 'productos',
+        loadChildren: './productos/productos.module#ProductosModule'
       }
     ]
   }
