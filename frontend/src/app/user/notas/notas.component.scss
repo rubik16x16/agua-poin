@@ -1,0 +1,53 @@
+.notas-container{
+
+  background: yellow;
+  padding: 10px;
+}
+
+.nota-card{
+
+  border: 2px solid black;
+}
+
+.nota-img img{
+
+  width: 140px;
+  height: 140px;
+}
+
+.nota-img{
+
+  float: left;
+  margin: 10px;
+  border-radius: 70px;
+  overflow: hidden;
+}
+
+.nota-text{
+
+  float: left;
+  max-width: 60%;
+  background: green;
+}
+
+.nota-card:nth-child(odd) {
+
+  .nota-img{
+
+    border: 3px solid black;
+    float: right;
+  }
+
+  .nota-text{
+
+    border: 3px solid black;
+    float: right;
+  }
+}
+
+.nota-card:after {
+
+  content: '';
+  display: block;
+  clear: both;
+}
