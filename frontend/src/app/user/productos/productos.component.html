@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-3" *ngFor="let producto of productos">
     <div class="card">
-      <img class="card-img-top" src="assets/img.jpeg" alt="Card image cap">
+      <img class="card-img-top" src="http://localhost/agua-poin/public/storage/{{ producto.getImg() }}" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">{{ producto.getNombre() }}</h5>
         <span>{{ producto.getPrecio() }}$</span>

@@ -16,7 +16,6 @@ class NotasController extends Controller{
     return response()->json(Nota::all()->toArray());
   }//end index
 
-
   /**
    * Store a newly created resource in storage.
    *
@@ -29,6 +28,13 @@ class NotasController extends Controller{
     $nota->save();
     return response()->json($nota->toArray());
   }//end Store
+
+  public function storeImg(Request $request, $id){
+
+    $nota= Nota::find($id);
+    $nota->img = $request->file('img')->store('/imgs/notas', 'public');
+    $nota->save();
+  }//end storeImg
 
   /**
    * Display the specified resource.

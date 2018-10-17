@@ -7,5 +7,8 @@
     <label for="precio">Precio</label>
     <input [(ngModel)]="precio" type="text" name="precio" class="form-control" id="precio" placeholder="Precio">
   </div>
+  <input type="file" class="from-control" (change)="onSelectFile($event)">
   <button type="button" class="btn btn-primary" (click)="storeProducto()">Guardar</button>
 </form>
+
+<img [src]="fileUrl" alt="">

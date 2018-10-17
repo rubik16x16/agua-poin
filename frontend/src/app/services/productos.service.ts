@@ -48,6 +48,18 @@ export class ProductosService {
       );
   }//end storeProducto
 
+  storeProductoImg(id: number, img: File): Observable<any>{
+
+    let formData: FormData= new FormData();
+    formData.append('img', img);
+
+    return this.http.post<any>(`${this.PRODUCTOS_URL}/img/${id}`, formData)
+      .pipe(
+        tap(_ => this.log(`stored nota img`)),
+        catchError(this.handleError('storeProductoImg', []))
+      );
+  }//end storeProductoImg
+
   updateProducto(id: number, producto: Producto): Observable<any>{
 
     return this.http.put(`${this.PRODUCTOS_URL}/${id}`, producto, this.HTTP_OPTIONS).

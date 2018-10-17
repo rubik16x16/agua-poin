@@ -13,6 +13,8 @@ export class CreateComponent implements OnInit {
 
   private nombre: string;
   private precio: number;
+  private fileToUpload: File;
+  private fileUrl: string;
 
   constructor(
     private productosService: ProductosService,
@@ -25,10 +27,27 @@ export class CreateComponent implements OnInit {
   private storeProducto(){
 
     let producto= new Producto(0, this.nombre, this.precio, 'imgx');
+
     this.productosService.storeProducto(producto).subscribe(
-      _ => this.goBack()
+      producto => this.productosService.storeProductoImg(producto.id, this.fileToUpload).subscribe(
+        _ => this.goBack()
+      )
     );
   }//end storeProducto
+
+  private onSelectFile(event) { // called each time file input changes
+
+    if (event.target.files && event.target.files[0]) {
+
+      this.fileToUpload = event.target.files[0];
+
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.fileUrl = event.target.result;
+      }//end closure
+    }//end if
+  }//end onSelectFile
 
   private goBack(): void {
 

@@ -18,4 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('notas', 'NotasController');
+Route::post('notas/img/{id}', 'NotasController@storeImg');
+
 Route::resource('productos', 'ProductosController');
+Route::post('productos/img/{id}', 'ProductosController@storeImg');

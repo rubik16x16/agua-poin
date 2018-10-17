@@ -7,5 +7,8 @@
     <label for="cuerpo">Cuerpo</label>
     <textarea [(ngModel)]="cuerpo" name="cuerpo" class="form-control" id="cuerpo" rows="8" cols="80" placeholder="Cuerpo"></textarea>
   </div>
+  <input type="file" class="from-control" (change)="onSelectFile($event)">
   <button type="button" class="btn btn-primary" (click)="storeNota()">Guardar</button>
 </form>
+
+<img [src]="fileUrl" alt="">

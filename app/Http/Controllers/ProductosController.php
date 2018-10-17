@@ -30,6 +30,13 @@ class ProductosController extends Controller{
     return response()->json($producto->toArray());
   }//end store
 
+  public function storeImg(Request $request, $id){
+
+    $producto= Producto::find($id);
+    $producto->img = $request->file('img')->store('imgs/productos', 'public');
+    $producto->save();
+  }//end storeImg
+
   /**
    * Display the specified resource.
    *

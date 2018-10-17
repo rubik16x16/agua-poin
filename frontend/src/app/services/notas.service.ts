@@ -48,6 +48,18 @@ export class NotasService{
       );
   }//end storeNota
 
+  storeNotaImg(id: number, img: File): Observable<any>{
+
+    let formData: FormData= new FormData();
+    formData.append('img', img);
+
+    return this.http.post<any>(`${this.NOTAS_URL}/img/${id}`, formData)
+      .pipe(
+        tap(_ => this.log(`stored nota img`)),
+        catchError(this.handleError('storeNotaImg', []))
+      );
+  }
+
   updateNota(id: number, nota: Nota): Observable<any>{
 
     return this.http.put(`${this.NOTAS_URL}/${id}`, nota, this.HTTP_OPTIONS).

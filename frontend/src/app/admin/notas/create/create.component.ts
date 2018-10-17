@@ -13,6 +13,8 @@ export class CreateComponent implements OnInit {
 
   private titulo: string;
   private cuerpo: string;
+  private fileUrl: string;
+  private fileToUpload: File = null;
 
   constructor(
     private notasService: NotasService,
@@ -26,11 +28,29 @@ export class CreateComponent implements OnInit {
 
     let nota= new Nota(0, this.titulo, this.cuerpo, 'imgx');
 
-    this.notasService.storeNota(nota).subscribe(_ => this.goBack());
+    this.notasService.storeNota(nota).subscribe(
+      nota => this.notasService.storeNotaImg(nota.id, this.fileToUpload).subscribe(
+        _ => this.goBack()
+      )
+    );
   }//end storeNota
 
   private goBack(): void {
 
     this.location.back();
   }//end goBack
+
+  private onSelectFile(event) { // called each time file input changes
+
+    if (event.target.files && event.target.files[0]) {
+
+      this.fileToUpload = event.target.files[0];
+
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.fileUrl = event.target.result;
+      }//end closure
+    }//end if
+  }//end onSelectFile
 }//end CreateComponent class
