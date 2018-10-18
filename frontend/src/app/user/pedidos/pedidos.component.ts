@@ -48,7 +48,7 @@ export class PedidosComponent implements OnInit {
       0, this.nombre, this.telefono,
       this.direccion, this.producto, this.cantidad,
       this.horario)).subscribe(
-        pedido => console.log(pedido);
+        pedido => console.log(pedido)
       );
   }//end addPedido
 }//end PedidosComponent class

@@ -22,11 +22,14 @@ export class ProductosComponent implements OnInit {
 
   getProductos(): void{
 
+    let loader = document.getElementById("preloader");
+
     this.productosService.getProductos().subscribe(
       productos => {
         for(let producto of productos){
           this.productos.push(new Producto(producto.id, producto.nombre, producto.precio, producto.img));
         }
+        loader.className= 'preloader fade-out';
       }
     );
   }
