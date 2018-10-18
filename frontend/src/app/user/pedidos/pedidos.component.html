@@ -1,0 +1,33 @@
+<form>
+  <div class="form-group">
+    <label for="nombre">Nombre</label>
+    <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+  </div>
+  <div class="form-group">
+    <label for="telefono">Telefono</label>
+    <input type="text" class="form-control" id="telefono" placeholder="Telefono">
+  </div>
+  <div class="form-group">
+    <label for="direccion">Direccion</label>
+    <textarea class="form-control" rows="8" cols="80" id="direccion" placeholder="Direccion"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="producto">Producto</label>
+    <select class="from-control" id="producto">
+      <option *ngFor="let producto of productos" value="{{ producto.getId() }}">{{ producto.getNombre() }}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="cantidad">Cantidad</label>
+    <input type="text" class="form-control" id="cantidad" placeholder="Cantidad">
+  </div>
+  <div class="form-group">
+    <label for="horario">Horario</label>
+    <select class="from-control" id="horario">
+      <option value="1">Mañana</option>
+      <option value="2">Tarde</option>
+      <option value="3">Noche</option>
+    </select>
+  </div>
+  <button type="button" class="btn btn-primary">Enviar</button>
+</form>
