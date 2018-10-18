@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
@@ -10,7 +11,8 @@ import { PedidosComponent } from './pedidos/pedidos.component';
 @NgModule({
   imports: [
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    FormsModule
   ],
   declarations: [UserComponent, NotasComponent, ProductosComponent, PedidosComponent]
 })

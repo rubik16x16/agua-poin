@@ -1,33 +1,33 @@
 <form>
   <div class="form-group">
     <label for="nombre">Nombre</label>
-    <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+    <input type="text" [(ngModel)]="nombre" name="nombre" class="form-control" id="nombre" placeholder="Nombre">
   </div>
   <div class="form-group">
     <label for="telefono">Telefono</label>
-    <input type="text" class="form-control" id="telefono" placeholder="Telefono">
+    <input type="text" [(ngModel)]="telefono" name="telefono" class="form-control" id="telefono" placeholder="Telefono">
   </div>
   <div class="form-group">
     <label for="direccion">Direccion</label>
-    <textarea class="form-control" rows="8" cols="80" id="direccion" placeholder="Direccion"></textarea>
+    <textarea class="form-control" [(ngModel)]="direccion" name="direccion" rows="8" cols="80" id="direccion" placeholder="Direccion"></textarea>
   </div>
   <div class="form-group">
     <label for="producto">Producto</label>
-    <select class="from-control" id="producto">
-      <option *ngFor="let producto of productos" value="{{ producto.getId() }}">{{ producto.getNombre() }}</option>
+    <select name="producto" class="from-control" id="producto" [(ngModel)]="producto">
+      <option *ngFor="let producto of productos" [ngValue]="producto">{{ producto.getNombre() }}</option>
     </select>
   </div>
   <div class="form-group">
     <label for="cantidad">Cantidad</label>
-    <input type="text" class="form-control" id="cantidad" placeholder="Cantidad">
+    <input type="text" [(ngModel)]="cantidad" name="cantidad" class="form-control" id="cantidad" placeholder="Cantidad">
   </div>
   <div class="form-group">
     <label for="horario">Horario</label>
-    <select class="from-control" id="horario">
-      <option value="1">Mañana</option>
-      <option value="2">Tarde</option>
-      <option value="3">Noche</option>
+    <select name="horario" value="horario" class="from-control" [(ngModel)]="horario" id="horario">
+      <option value="mañana">Mañana</option>
+      <option value="tarde">Tarde</option>
+      <option value="noche">Noche</option>
     </select>
   </div>
-  <button type="button" class="btn btn-primary">Enviar</button>
+  <button type="button" class="btn btn-primary" (click)="addPedido()">Enviar</button>
 </form>

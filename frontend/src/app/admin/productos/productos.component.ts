@@ -20,7 +20,7 @@ export class ProductosComponent implements OnInit {
     this.getProductos();
   }
 
-  getProductos(){
+  getProductos(): void{
 
     this.productosService.getProductos().subscribe(
       productos => {
@@ -31,7 +31,7 @@ export class ProductosComponent implements OnInit {
     );
   }
 
-  deleteProducto(id){
+  deleteProducto(id): void{
 
     this.productos= this.productos.filter(producto => producto.getId() !== id);
     this.productosService.deleteProducto(id).subscribe();

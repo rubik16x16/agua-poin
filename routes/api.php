@@ -22,3 +22,5 @@ Route::post('notas/img/{id}', 'NotasController@storeImg');
 
 Route::resource('productos', 'ProductosController');
 Route::post('productos/img/{id}', 'ProductosController@storeImg');
+
+Route::resource('pedidos', 'PedidosController');

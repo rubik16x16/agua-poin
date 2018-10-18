@@ -1,0 +1,26 @@
+<h2>Pedidos</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nombre</th>
+      <th>Direccion</th>
+      <th>Producto</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pedido of pedidos">
+      <th scope="row">{{ pedido.getId() }}</th>
+      <td>{{ pedido.getNombre() }}</td>
+      <td>{{ pedido.getDireccion() }}</td>
+      <td>{{ pedido.getProducto().getNombre() }}</td>
+      <td>
+        <a class="btn btn-default" routerLink="show/{{ pedido.getId() }}" routerLinkActive="active">Ver</a>
+        <a class="btn btn-warning" routerLink="edit/{{ pedido.getId() }}" routerLinkActive="active">Editar</a>
+        <button type="button" class="btn btn-danger" (click)="deleteNota(pedido.getId())">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
