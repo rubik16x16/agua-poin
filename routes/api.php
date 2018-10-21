@@ -24,3 +24,5 @@ Route::resource('productos', 'ProductosController');
 Route::post('productos/img/{id}', 'ProductosController@storeImg');
 
 Route::resource('pedidos', 'PedidosController');
+
+Route::post('admin/login', 'LoginController@login');

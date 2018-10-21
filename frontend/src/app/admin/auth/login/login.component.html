@@ -1,0 +1,11 @@
+<form>
+  <div class="form-group">
+    <label for="correo">Correo</label>
+    <input name="correo" [(ngModel)]="correo" type="email" class="form-control" id="correo" placeholder="Correo">
+  </div>
+  <div class="form-group">
+    <label for="clave">Clave</label>
+    <input name="clave" [(ngModel)]="clave" type="password" class="form-control" id="clave" placeholder="Clave">
+  </div>
+  <button type="button" class="btn btn-primary" (click)="login()">Submit</button>
+</form>
