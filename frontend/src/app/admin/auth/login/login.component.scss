@@ -1,0 +1,35 @@
+.login-card{
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -200%);
+
+  width: 400px;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, .5);
+
+  animation-duration: 3s;
+  animation-name: slidein;
+  animation-fill-mode: forwards;
+}
+
+.login-img-header{
+
+  height: 150px;
+  width: 210px;
+  margin-bottom: 30px;
+}
+
+@keyframes slidein{
+
+  from{
+    transform: translate(-50%, -200%);
+  }
+
+  to{
+    transform: translate(-50%, -50%);
+  }
+
+}
