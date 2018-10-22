@@ -1,0 +1,26 @@
+.pedidos-container{
+
+  background: white;
+  padding: 80px 40px;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, .5);
+}
+
+.pedidos{
+
+  padding: 50px 20px;
+  background-image: url("/assets/fondo-azul.jpg");
+}
+
+.form-control{
+
+  border-radius: 0;
+}
+
+.btn-send{
+
+  margin-top: 10px;
+  border-radius: 25px;
+  background: black;
+  padding: 7px 20px;
+  border: none;
+}

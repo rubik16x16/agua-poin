@@ -1,12 +1,14 @@
-.notas-container{
+.bar-header-notas{
 
-  background: yellow;
+  background: #005792;
   padding: 10px;
+  margin-bottom: 40px;
+  color: #edf9fc;
 }
 
 .nota-card{
 
-  border: 2px solid black;
+  margin: 80px 0;
 }
 
 .nota-img img{
@@ -27,20 +29,21 @@
 
   float: left;
   max-width: 60%;
-  background: green;
+  background: #53cde2;
+  padding: 25px;
+  border-radius: 10px;
+  color: white;
 }
 
 .nota-card:nth-child(odd) {
 
   .nota-img{
 
-    border: 3px solid black;
     float: right;
   }
 
   .nota-text{
 
-    border: 3px solid black;
     float: right;
   }
 }

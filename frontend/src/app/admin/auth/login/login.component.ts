@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   login(): void{
 
     this.authService.login(new Admin(0, this.correo, this.clave)).subscribe(
-      response => {
+      (response: any) => {
         console.log(response);
         if(response != 'error'){
           this.router.navigate([this.authService.redirectUrl]);

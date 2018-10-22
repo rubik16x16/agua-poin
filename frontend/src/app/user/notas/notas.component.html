@@ -1,10 +1,20 @@
 <div class="notas-container">
-  <div class="nota-card" *ngFor="let nota of notas">
-    <div class="nota-img">
-      <img src="http://localhost/agua-poin/public/storage/{{ nota.getImg() }}" alt="">
+
+  <div class="bar-header-notas">
+    <div class="container">
+      <h2>Notas</h2>
     </div>
-    <div class="nota-text">
-      <p>{{ nota.getCuerpo() }}</p>
+  </div>
+
+  <div class="container">
+    <div class="nota-card" *ngFor="let nota of notas">
+      <div class="nota-img">
+        <img src="http://localhost/agua-poin/public/storage/{{ nota.getImg() }}" alt="">
+      </div>
+      <div class="nota-text text-center">
+        <h3>{{ nota.getTitulo() }}</h3>
+        <p>{{ nota.getCuerpo() }}</p>
+      </div>
     </div>
   </div>
 </div>

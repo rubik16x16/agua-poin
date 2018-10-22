@@ -1,33 +1,45 @@
-<form>
-  <div class="form-group">
-    <label for="nombre">Nombre</label>
-    <input type="text" [(ngModel)]="nombre" name="nombre" class="form-control" id="nombre" placeholder="Nombre">
+<div class="pedidos">
+  <div class="container pedidos-container">
+      <h2 class="text-center">Pedidos</h2>
+
+      <form>
+        <div class="form-row">
+          <div class="col">
+            <label for="nombre">Nombre</label>
+            <input type="text" [(ngModel)]="nombre" name="nombre" class="form-control" id="nombre" placeholder="Nombre">
+          </div>
+          <div class="col">
+            <label for="telefono">Telefono</label>
+            <input type="text" [(ngModel)]="telefono" name="telefono" class="form-control" id="telefono" placeholder="Telefono">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col">
+            <label for="direccion">Direccion</label>
+            <textarea class="form-control" [(ngModel)]="direccion" name="direccion" rows="8" cols="80" id="direccion" placeholder="Direccion"></textarea>
+          </div>
+          <div class="col">
+            <label for="producto">Producto</label>
+            <select name="producto" class="form-control" id="producto" [(ngModel)]="producto">
+              <option *ngFor="let producto of productos" [ngValue]="producto">{{ producto.getNombre() }}</option>
+            </select>
+
+            <label for="cantidad">Cantidad</label>
+            <input type="text" [(ngModel)]="cantidad" name="cantidad" class="form-control" id="cantidad" placeholder="Cantidad">
+
+            <label for="horario">Horario</label>
+            <select name="horario" value="horario" class="form-control" [(ngModel)]="horario" id="horario">
+              <option value="mañana">Mañana</option>
+              <option value="tarde">Tarde</option>
+              <option value="noche">Noche</option>
+            </select>
+
+            <div class="form-group text-center">
+              <button type="button" class="btn btn-primary btn-send" (click)="addPedido()">Enviar</button>
+            </div>
+          </div>
+        </div>
+
+      </form>
   </div>
-  <div class="form-group">
-    <label for="telefono">Telefono</label>
-    <input type="text" [(ngModel)]="telefono" name="telefono" class="form-control" id="telefono" placeholder="Telefono">
-  </div>
-  <div class="form-group">
-    <label for="direccion">Direccion</label>
-    <textarea class="form-control" [(ngModel)]="direccion" name="direccion" rows="8" cols="80" id="direccion" placeholder="Direccion"></textarea>
-  </div>
-  <div class="form-group">
-    <label for="producto">Producto</label>
-    <select name="producto" class="from-control" id="producto" [(ngModel)]="producto">
-      <option *ngFor="let producto of productos" [ngValue]="producto">{{ producto.getNombre() }}</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="cantidad">Cantidad</label>
-    <input type="text" [(ngModel)]="cantidad" name="cantidad" class="form-control" id="cantidad" placeholder="Cantidad">
-  </div>
-  <div class="form-group">
-    <label for="horario">Horario</label>
-    <select name="horario" value="horario" class="from-control" [(ngModel)]="horario" id="horario">
-      <option value="mañana">Mañana</option>
-      <option value="tarde">Tarde</option>
-      <option value="noche">Noche</option>
-    </select>
-  </div>
-  <button type="button" class="btn btn-primary" (click)="addPedido()">Enviar</button>
-</form>
+</div>

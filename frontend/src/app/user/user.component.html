@@ -1,47 +1,29 @@
-<div class="container">
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" routerLink="/" routerLinkActive="active">Agua Point</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-yellow" id="navbar">
+  <a class="navbar-brand" routerLink="/" routerLinkActive="active">Agua Point</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/" routerLinkActive="active">Inicio<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/notas" routerLinkActive="active">Notas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/promociones" routerLinkActive="active">Promociones</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/pedido" routerLinkActive="active">Pedido</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <div class="front-img">
-
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/" routerLinkActive="active">Inicio<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/notas" routerLinkActive="active">Notas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/promociones" routerLinkActive="active">Promociones</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/pedido" routerLinkActive="active">Pedido</a>
+      </li>
+    </ul>
   </div>
+</nav>
 
-  <div class="bar-1"></div>
-  <div class="bar-2">
-    <div class="row">
-      <div class="col-3 card-1"></div>
-      <div class="col-3 card-1"></div>
-      <div class="col-3 card-1"></div>
-      <div class="col-3 card-1"></div>
-    </div>
-  </div>
+<div class="front-img"></div>
 
-  <app-notas></app-notas>
-
-  <app-productos></app-productos>
-
-  <div class="pedido">
-    <app-pedidos></app-pedidos>
-  </div>
-</div>
+<app-notas></app-notas>
+<app-productos></app-productos>
+<app-pedidos></app-pedidos>
