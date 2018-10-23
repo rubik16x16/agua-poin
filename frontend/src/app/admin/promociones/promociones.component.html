@@ -1,0 +1,26 @@
+<h2>Promociones</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nombre</th>
+      <th>Img</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let promocion of promociones">
+      <th scope="row">{{ promocion.getId() }}</th>
+      <td>{{ promocion.getNombre() }}</td>
+      <td> <img src="http://localhost/agua-poin/public/storage/{{ promocion.getImg() }}" width="100" height="100" alt=""></td>
+      <td>
+        <a class="btn btn-default" routerLink="show/{{ promocion.getId() }}" routerLinkActive="active">Ver</a>
+        <a class="btn btn-warning" routerLink="edit/{{ promocion.getId() }}" routerLinkActive="active">Editar</a>
+        <button type="button" class="btn btn-danger" (click)="deletePromocion(promocion.getId())">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<a routerLink="create" routerLinkActive="active">Nueva promocion</a>

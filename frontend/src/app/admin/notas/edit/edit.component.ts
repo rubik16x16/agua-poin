@@ -27,7 +27,7 @@ export class EditComponent implements OnInit {
     this.getNota();
   }//end ngOnInit
 
-  private getNota(){
+  private getNota(): void{
 
     const id = +this.route.snapshot.paramMap.get('id');
     this.notasService.getNota(id).subscribe(nota => {
@@ -37,7 +37,7 @@ export class EditComponent implements OnInit {
     });
   }//end getNota
 
-  private updateNota(){
+  private updateNota(): void{
 
     this.notasService.updateNota(this.id, new Nota(this.id, this.titulo, this.cuerpo, 'imgx'))
       .subscribe(_ => this.goBack());

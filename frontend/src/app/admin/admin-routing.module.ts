@@ -21,6 +21,10 @@ const routes: Routes = [
       {
         path: 'pedidos',
         loadChildren: './pedidos/pedidos.module#PedidosModule'
+      },
+      {
+        path: 'promociones',
+        loadChildren: './promociones/promociones.module#PromocionesModule'
       }
     ]
   }

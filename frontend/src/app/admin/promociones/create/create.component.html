@@ -1,0 +1,10 @@
+<form>
+  <div class="form-group">
+    <label for="nombre">Nombre</label>
+    <input [(ngModel)]="nombre" type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre">
+  </div>
+  <input type="file" class="from-control" (change)="onSelectFile($event)">
+  <button type="button" class="btn btn-primary" (click)="storePromocion()">Guardar</button>
+</form>
+
+<img [src]="fileUrl" alt="">
