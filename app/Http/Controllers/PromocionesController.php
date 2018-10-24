@@ -27,17 +27,11 @@ class PromocionesController extends Controller{
    */
   public function store(Request $request){
 
-    // $promocion= new Promocion($request->all());
-    // $promocion->save();
-    // return response()->json($promocion->toArray());
-  }//end store
-
-  public function storeImg(Request $request, $id){
-
-    $promocion= Promocion::find($id);
+    $promocion= new Promocion($request->all());
     $promocion->img = $request->file('img')->store('imgs/promociones', 'public');
     $promocion->save();
-  }//end storeImg
+    return response()->json($promocion->toArray());
+  }//end store
 
   /**
    * Display the specified resource.
@@ -62,6 +56,13 @@ class PromocionesController extends Controller{
 
     $promocion= Promocion::find($id);
     $promocion->fill($request->all());
+    
+    if($request->file('img') !== NULL){
+
+      Storage::disk('public')->delete($promocion->img);
+      $promocion->img = $request->file('img')->store('imgs/promociones', 'public');
+    }//end if
+
     $promocion->save();
   }//end update
 

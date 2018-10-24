@@ -3,7 +3,8 @@ export class Promocion{
   constructor(
     private id: number,
     private nombre: string,
-    private img: string
+    private imgName: string,
+    private imgFile: File
   ){ }
 
   getId(): number{
@@ -26,13 +27,23 @@ export class Promocion{
     this.nombre= nombre;
   }//end setNombre
 
-  getImg():string {
+  getImgName():string {
 
-    return this.img;
+    return this.imgName;
   }//end getImg
 
-  setImg(img: string): void{
+  setImgName(imgName: string): void{
 
-    this.img= img;
+    this.imgName= imgName;
   }//end setImg
+
+  getImgFile(): File{
+
+    return this.imgFile;
+  }//end getImgFile
+
+  setImgFile(imgFile: File): void{
+
+    this.imgFile= imgFile;
+  }//end setImgFile
 }//end Promocion class

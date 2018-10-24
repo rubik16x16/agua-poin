@@ -26,7 +26,7 @@ export class PromocionesComponent implements OnInit {
     this.promocionesService.getPromociones().subscribe(
       promociones =>{
         for(let promocion of promociones){
-          this.promociones.push(new Promocion(promocion.id, promocion.nombre, promocion.img));
+          this.promociones.push(new Promocion(promocion.id, promocion.nombre, promocion.img, null));
         }
       }
     );

@@ -25,19 +25,12 @@ export class CreateComponent implements OnInit {
 
   private storePromocion(){
 
-    let promocion= new Promocion(0, this.nombre, 'imgx');
+    let promocion= new Promocion(0, this.nombre, '', this.fileToUpload);
 
     this.promocionesService.storePromocion(promocion).subscribe(
-      promocion => this.promocionesService.storePromocionImg(promocion.id, this.fileToUpload).subscribe(
-        _ => this.goBack()
-      )
+      _ => this.goBack()
     );
   }//end storePromocion
-
-  private goBack(): void {
-
-    this.location.back();
-  }//end goBack
 
   private onSelectFile(event) { // called each time file input changes
 
@@ -52,5 +45,10 @@ export class CreateComponent implements OnInit {
       }//end closure
     }//end if
   }//end onSelectFile
+
+  private goBack(): void {
+
+    this.location.back();
+  }//end goBack
 }//end CreateComponent class
 

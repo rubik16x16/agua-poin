@@ -13,7 +13,7 @@
     <tr *ngFor="let promocion of promociones">
       <th scope="row">{{ promocion.getId() }}</th>
       <td>{{ promocion.getNombre() }}</td>
-      <td> <img src="http://localhost/agua-poin/public/storage/{{ promocion.getImg() }}" width="100" height="100" alt=""></td>
+      <td> <img src="http://localhost/agua-poin/public/storage/{{ promocion.getImgName() }}" width="100" height="100" alt=""></td>
       <td>
         <a class="btn btn-default" routerLink="show/{{ promocion.getId() }}" routerLinkActive="active">Ver</a>
         <a class="btn btn-warning" routerLink="edit/{{ promocion.getId() }}" routerLinkActive="active">Editar</a>

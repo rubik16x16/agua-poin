@@ -41,28 +41,25 @@ export class PromocionesService {
 
   storePromocion(promocion: Promocion): Observable<any>{
 
-    return this.http.post<any>(this.PROMOCIONES_URL, promocion, this.HTTP_OPTIONS)
+    let promocionData: FormData= new FormData();
+    promocionData.append('nombre', promocion.getNombre());
+    promocionData.append('img', promocion.getImgFile());
+
+    return this.http.post<any>(this.PROMOCIONES_URL, promocionData)
       .pipe(
         tap(promocion => this.log(`stored promocion id:${promocion.id}`)),
         catchError(this.handleError('storePromocion', []))
       );
   }//end storePromocion
 
-  storePromocionImg(id: number, img: File): Observable<any>{
-
-    let formData: FormData= new FormData();
-    formData.append('img', img);
-
-    return this.http.post<any>(`${this.PROMOCIONES_URL}/img/${id}`, formData)
-      .pipe(
-        tap(_ => this.log(`stored nota img`)),
-        catchError(this.handleError('storePromocionImg', []))
-      );
-  }//end storePromocionImg
-
   updatePromocion(id: number, promocion: Promocion): Observable<any>{
 
-    return this.http.put(`${this.PROMOCIONES_URL}/${id}`, promocion, this.HTTP_OPTIONS).
+    let promocionData: FormData= new FormData();
+    promocionData.append('_method', 'PUT');
+    promocionData.append('nombre', promocion.getNombre());
+    promocionData.append('img', promocion.getImgFile());
+
+    return this.http.post(`${this.PROMOCIONES_URL}/${id}`, promocionData).
       pipe(
         tap(_ => this.log(`updated promocion id:${id}`)),
         catchError(this.handleError('updatePromocion', []))
