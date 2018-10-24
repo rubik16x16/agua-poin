@@ -27,7 +27,7 @@ export class ProductosComponent implements OnInit {
     this.productosService.getProductos().subscribe(
       productos => {
         for(let producto of productos){
-          this.productos.push(new Producto(producto.id, producto.nombre, producto.precio, producto.img));
+          this.productos.push(new Producto(producto.id, producto.nombre, producto.precio, producto.img, null));
         }
         loader.className= 'preloader fade-out';
       }

@@ -4,7 +4,8 @@ export class Producto{
     private id: number,
     private nombre: string,
     private precio: number,
-    private img: string
+    private imgName: string,
+    private imgFile: File
   ){ }
 
   getId(): number{
@@ -37,13 +38,23 @@ export class Producto{
     this.precio= precio;
   }
 
-  getImg(): string{
+  getImgName(): string{
 
-    return this.img;
-  }//end getImg
+    return this.imgName;
+  }//end getImgName
 
-  setImg(img: string): void{
+  setImgName(imgName: string): void{
 
-    this.img= img
-  }//end setImg
+    this.imgName= imgName
+  }//end setImgName
+
+  getImgFile(): File{
+
+    return this.imgFile;
+  }//end getImgFile
+
+  setImgFile(imgFile: File): void{
+
+    this.imgFile= imgFile;
+  }//end setImgFile
 }//end Producto class

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Producto;
+use Illuminate\Support\Facades\Storage;
 
 class ProductosController extends Controller{
   /**
@@ -26,16 +27,10 @@ class ProductosController extends Controller{
   public function store(Request $request){
 
     $producto= new Producto($request->all());
+    $producto->img = $request->file('img')->store('imgs/productos', 'public');
     $producto->save();
     return response()->json($producto->toArray());
   }//end store
-
-  public function storeImg(Request $request, $id){
-
-    $producto= Producto::find($id);
-    $producto->img = $request->file('img')->store('imgs/productos', 'public');
-    $producto->save();
-  }//end storeImg
 
   /**
    * Display the specified resource.
@@ -59,6 +54,13 @@ class ProductosController extends Controller{
 
     $producto= Producto::find($id);
     $producto->fill($request->all());
+
+    if($request->file('img') !== NULL){
+
+      Storage::disk('public')->delete($producto->img);
+      $producto->img = $request->file('img')->store('imgs/productos', 'public');
+    }//end if
+
     $producto->save();
   }//end update
 
@@ -70,6 +72,8 @@ class ProductosController extends Controller{
    */
   public function destroy($id){
 
-    Producto::destroy($id);
+    $producto= Producto::find($id);
+    Storage::disk('public')->delete($producto->img);
+    $producto->delete();
   }//end destroy
 }//end ProductosController class

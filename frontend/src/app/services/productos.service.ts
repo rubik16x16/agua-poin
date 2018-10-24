@@ -41,28 +41,27 @@ export class ProductosService {
 
   storeProducto(producto: Producto): Observable<any>{
 
-    return this.http.post<any>(this.PRODUCTOS_URL, producto, this.HTTP_OPTIONS)
+    let productoData: FormData= new FormData();
+    productoData.append('nombre', producto.getNombre());
+    productoData.append('precio', String(producto.getPrecio()));
+    productoData.append('img', producto.getImgFile());
+
+    return this.http.post<any>(this.PRODUCTOS_URL, productoData)
       .pipe(
         tap(producto => this.log(`stored producto id:${producto.id}`)),
         catchError(this.handleError('storeProducto', []))
       );
   }//end storeProducto
 
-  storeProductoImg(id: number, img: File): Observable<any>{
-
-    let formData: FormData= new FormData();
-    formData.append('img', img);
-
-    return this.http.post<any>(`${this.PRODUCTOS_URL}/img/${id}`, formData)
-      .pipe(
-        tap(_ => this.log(`stored nota img`)),
-        catchError(this.handleError('storeProductoImg', []))
-      );
-  }//end storeProductoImg
-
   updateProducto(id: number, producto: Producto): Observable<any>{
 
-    return this.http.put(`${this.PRODUCTOS_URL}/${id}`, producto, this.HTTP_OPTIONS).
+    let productoData: FormData= new FormData();
+    productoData.append('_method', 'PUT');
+    productoData.append('nombre', producto.getNombre());
+    productoData.append('precio', String(producto.getPrecio()));
+    productoData.append('img', producto.getImgFile());
+
+    return this.http.post(`${this.PRODUCTOS_URL}/${id}`, productoData).
       pipe(
         tap(_ => this.log(`updated producto id:${id}`)),
         catchError(this.handleError('updateProducto', []))

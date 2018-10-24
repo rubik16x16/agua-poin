@@ -26,12 +26,10 @@ export class CreateComponent implements OnInit {
 
   private storeProducto(){
 
-    let producto= new Producto(0, this.nombre, this.precio, 'imgx');
+    let producto= new Producto(0, this.nombre, this.precio, '', this.fileToUpload);
 
     this.productosService.storeProducto(producto).subscribe(
-      producto => this.productosService.storeProductoImg(producto.id, this.fileToUpload).subscribe(
-        _ => this.goBack()
-      )
+      _ => this.goBack()
     );
   }//end storeProducto
 
