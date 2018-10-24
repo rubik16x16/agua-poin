@@ -27,7 +27,7 @@ export class NotasComponent implements OnInit {
 
       for(let nota of notas){
 
-        this.notas.push(new Nota(nota.id, nota.titulo, nota.cuerpo, nota.img));
+        this.notas.push(new Nota(nota.id, nota.titulo, nota.cuerpo, nota.img, null));
       }
     });
   }//end getNotas

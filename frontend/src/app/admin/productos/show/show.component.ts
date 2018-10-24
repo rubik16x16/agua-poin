@@ -27,8 +27,9 @@ export class ShowComponent implements OnInit {
 
     const id = +this.route.snapshot.paramMap.get('id');
 
-    this.productosService.getProducto(id).subscribe(producto => {
-      this.producto= new Producto(producto.id, producto.nombre, producto.precio, producto.img);
-    });
+    this.productosService.getProducto(id).subscribe(
+      producto => {
+        this.producto= new Producto(producto.id, producto.nombre, producto.precio, producto.img, null);
+      });
   }//end getProducto
 }//end ShowComponent class

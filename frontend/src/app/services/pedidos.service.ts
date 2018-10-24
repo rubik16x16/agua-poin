@@ -82,7 +82,7 @@ export class PedidosService {
     };
   }//end handleError
 
-  private log(message: string) {
+  private log(message: string): void{
 
     this.messageService.add(`PedidosService: ${message}`);
   }//end log

@@ -26,6 +26,8 @@ export class ShowComponent implements OnInit {
   private getNota(){
 
     const id = +this.route.snapshot.paramMap.get('id');
-    this.notasService.getNota(id).subscribe(nota => this.nota= new Nota(nota.id, nota.titulo, nota.cuerpo, nota.img));
+    this.notasService.getNota(id).subscribe(
+      nota => this.nota= new Nota(nota.id, nota.titulo, nota.cuerpo, nota.img, null)
+    );
   }//end getNota
 }//end ShowComponent

@@ -41,28 +41,27 @@ export class NotasService{
 
   storeNota(nota: Nota): Observable<any>{
 
-    return this.http.post<any>(this.NOTAS_URL, nota, this.HTTP_OPTIONS)
+    let notaData: FormData= new FormData();
+    notaData.append('titulo', nota.getTitulo());
+    notaData.append('cuerpo', nota.getCuerpo());
+    notaData.append('img', nota.getImgFile());
+
+    return this.http.post<any>(this.NOTAS_URL, notaData)
       .pipe(
         tap(nota => this.log(`stored nota id:${nota.id}`)),
         catchError(this.handleError('storeNota', []))
       );
   }//end storeNota
 
-  storeNotaImg(id: number, img: File): Observable<any>{
-
-    let formData: FormData= new FormData();
-    formData.append('img', img);
-
-    return this.http.post<any>(`${this.NOTAS_URL}/img/${id}`, formData)
-      .pipe(
-        tap(_ => this.log(`stored nota img`)),
-        catchError(this.handleError('storeNotaImg', []))
-      );
-  }
-
   updateNota(id: number, nota: Nota): Observable<any>{
 
-    return this.http.put(`${this.NOTAS_URL}/${id}`, nota, this.HTTP_OPTIONS).
+    let notaData: FormData= new FormData();
+    notaData.append('_method', 'PUT');
+    notaData.append('titulo', nota.getTitulo());
+    notaData.append('cuerpo', nota.getCuerpo());
+    notaData.append('img', nota.getImgFile());
+
+    return this.http.post(`${this.NOTAS_URL}/${id}`, notaData).
       pipe(
         tap(_ => this.log(`updated nota id:${id}`)),
         catchError(this.handleError('updateNota', []))
@@ -94,7 +93,7 @@ export class NotasService{
     };
   }//end handleError
 
-  private log(message: string) {
+  private log(message: string): void{
 
     this.messageService.add(`NotasService: ${message}`);
   }//end log

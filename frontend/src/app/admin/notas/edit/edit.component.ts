@@ -15,6 +15,9 @@ export class EditComponent implements OnInit {
   private id: number;
   private titulo: string;
   private cuerpo: string;
+  private imgName: string;
+  private fileUrl: string;
+  private fileToUpload: File = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,14 +37,32 @@ export class EditComponent implements OnInit {
       this.id= nota.id;
       this.titulo= nota.titulo;
       this.cuerpo= nota.cuerpo;
+      this.imgName= nota.img;
     });
   }//end getNota
 
   private updateNota(): void{
 
-    this.notasService.updateNota(this.id, new Nota(this.id, this.titulo, this.cuerpo, 'imgx'))
-      .subscribe(_ => this.goBack());
+    let nota: Nota= new Nota(this.id, this.titulo, this.cuerpo, '', this.fileToUpload);
+
+    this.notasService.updateNota(this.id, nota).subscribe(
+      _ => this.goBack()
+    );
   }//end updateNota
+
+  private onSelectFile(event): void{ // called each time file input changes
+
+    if (event.target.files && event.target.files[0]) {
+
+      this.fileToUpload = event.target.files[0];
+
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.fileUrl = event.target.result;
+      }//end closure
+    }//end if
+  }//end onSelectFile
 
   private goBack(): void {
 

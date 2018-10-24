@@ -93,7 +93,7 @@ export class ProductosService {
     };
   }//end handleError
 
-  private log(message: string) {
+  private log(message: string): void{
 
     this.messageService.add(`ProductosService: ${message}`);
   }//end log

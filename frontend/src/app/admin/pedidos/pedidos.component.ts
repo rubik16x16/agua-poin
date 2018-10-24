@@ -31,7 +31,7 @@ export class PedidosComponent implements OnInit {
           let dataProducto= pedido.producto;
           let producto= new Producto(
             dataProducto.id, dataProducto.nombre, dataProducto.precio,
-            dataProducto.img
+            dataProducto.img, null
           );
 
           this.pedidos.push(new Pedido(

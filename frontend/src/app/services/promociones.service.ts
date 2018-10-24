@@ -91,7 +91,7 @@ export class PromocionesService {
     };
   }//end handleError
 
-  private log(message: string) {
+  private log(message: string): void{
 
     this.messageService.add(`PromocionesService: ${message}`);
   }//end log

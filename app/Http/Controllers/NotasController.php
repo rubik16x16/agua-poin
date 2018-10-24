@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 use App\Models\Nota;
 
 class NotasController extends Controller{
@@ -25,16 +27,10 @@ class NotasController extends Controller{
   public function store(Request $request){
 
     $nota= new Nota($request->all());
+    $nota->img = $request->file('img')->store('/imgs/notas', 'public');
     $nota->save();
     return response()->json($nota->toArray());
   }//end Store
-
-  public function storeImg(Request $request, $id){
-
-    $nota= Nota::find($id);
-    $nota->img = $request->file('img')->store('/imgs/notas', 'public');
-    $nota->save();
-  }//end storeImg
 
   /**
    * Display the specified resource.
@@ -58,6 +54,13 @@ class NotasController extends Controller{
 
     $nota= Nota::find($id);
     $nota->fill($request->all());
+
+    if($request->file('img') !== NULL){
+
+      Storage::disk('public')->delete($nota->img);
+      $nota->img = $request->file('img')->store('imgs/notas', 'public');
+    }//end if
+
     $nota->save();
   }//end update
 
@@ -69,6 +72,8 @@ class NotasController extends Controller{
    */
   public function destroy($id){
 
-    Nota::destroy($id);
+    $nota= Nota::find($id);
+    Storage::disk('public')->delete($nota->img);
+    $nota->delete();
   }//end destroy
 }//end NotasController

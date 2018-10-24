@@ -9,7 +9,7 @@
   <div class="container">
     <div class="nota-card" *ngFor="let nota of notas">
       <div class="nota-img">
-        <img src="http://localhost/agua-poin/public/storage/{{ nota.getImg() }}" alt="">
+        <img src="http://localhost/agua-poin/public/storage/{{ nota.getImgName() }}" alt="">
       </div>
       <div class="nota-text text-center">
         <h3>{{ nota.getTitulo() }}</h3>
