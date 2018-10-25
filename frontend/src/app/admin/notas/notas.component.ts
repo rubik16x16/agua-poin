@@ -23,13 +23,17 @@ export class NotasComponent implements OnInit {
 
   private getNotas(): void{
 
-    this.notasService.getNotas().subscribe(notas => {
+    let loader = document.getElementById("preloader");
 
-      for(let nota of notas){
+    this.notasService.getNotas().subscribe(
+      notas => {
 
-        this.notas.push(new Nota(nota.id, nota.titulo, nota.cuerpo, nota.img, null));
-      }
-    });
+        for(let nota of notas){
+
+          this.notas.push(new Nota(nota.id, nota.titulo, nota.cuerpo, nota.img, null));
+        }//end for
+        loader.classList.add('fade-out');
+      });//end closure
   }//end getNotas
 
   private deleteNota(id: number): void{

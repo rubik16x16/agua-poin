@@ -9,8 +9,10 @@
   animation-duration: 2s;
   animation-iteration-count: infinite;
   position: absolute;
+  top: 50%;
   left: 50%;
   margin-left: -35px;
+  margin-top: -35px;
 }
 @keyframes girar {
   from{

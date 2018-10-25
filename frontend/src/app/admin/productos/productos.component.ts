@@ -17,10 +17,11 @@ export class ProductosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getProductos();
-  }
 
-  getProductos(): void{
+    this.getProductos();
+  }//end ngOnInit
+
+  private getProductos(): void{
 
     let loader = document.getElementById("preloader");
 
@@ -28,16 +29,14 @@ export class ProductosComponent implements OnInit {
       productos => {
         for(let producto of productos){
           this.productos.push(new Producto(producto.id, producto.nombre, producto.precio, producto.img, null));
-        }
-        loader.className= 'preloader fade-out';
-      }
-    );
-  }
+        }//end for
+        loader.classList.add('fade-out');
+      });//end closure
+  }//end getProductos
 
-  deleteProducto(id): void{
+  private deleteProducto(id): void{
 
     this.productos= this.productos.filter(producto => producto.getId() !== id);
     this.productosService.deleteProducto(id).subscribe();
-  }
-
-}
+  }//end deleteProductos
+}//end ProductosComponent class

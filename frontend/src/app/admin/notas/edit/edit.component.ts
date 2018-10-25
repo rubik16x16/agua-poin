@@ -38,6 +38,7 @@ export class EditComponent implements OnInit {
       this.titulo= nota.titulo;
       this.cuerpo= nota.cuerpo;
       this.imgName= nota.img;
+      this.fileUrl= `http://localhost/agua-poin/public/storage/${ nota.img }`;
     });
   }//end getNota
 
