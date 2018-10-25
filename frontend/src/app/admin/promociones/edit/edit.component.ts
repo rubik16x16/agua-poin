@@ -37,6 +37,7 @@ export class EditComponent implements OnInit {
       this.id= promocion.id;
       this.nombre= promocion.nombre;
       this.imgName= promocion.img;
+      this.fileUrl= `http://localhost/agua-poin/public/storage/${ promocion.img }`;
     });
   }//end getPromocion
 
