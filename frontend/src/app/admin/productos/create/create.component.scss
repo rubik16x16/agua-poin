@@ -1,0 +1,20 @@
+.img-upload{
+
+  width: 100%;
+  height: 200px;
+  margin-top: 20px;
+  background: #bcbab8;
+  display: block;
+  border-radius: 10px;
+  position: relative;
+}
+
+.img-upload > img{
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  max-height: 100%;
+}

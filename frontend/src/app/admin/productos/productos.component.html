@@ -1,30 +1,36 @@
-<h2>Productos</h2>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Nombre</th>
-      <th>Precio</th>
-      <th>Img</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let producto of productos">
-      <th scope="row">{{ producto.getId() }}</th>
-      <td>{{ producto.getNombre() }}</td>
-      <td>{{ producto.getPrecio() }}</td>
-      <td> <img src="http://localhost/agua-poin/public/storage/{{ producto.getImgName() }}" width="100" height="100" alt=""></td>
-      <td>
-        <a class="btn btn-default" routerLink="show/{{ producto.getId() }}" routerLinkActive="active">Ver</a>
-        <a class="btn btn-warning" routerLink="edit/{{ producto.getId() }}" routerLinkActive="active">Editar</a>
-        <button type="button" class="btn btn-danger" (click)="deleteProducto(producto.getId())">Eliminar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="card">
+  <div class="card-header text-center">
+    Productos
+  </div>
+  <div class="card-body text-center">
+    <table class="table table-borderless table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Img</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of productos">
+          <th scope="row">{{ producto.getId() }}</th>
+          <td>{{ producto.getNombre() }}</td>
+          <td>{{ producto.getPrecio() }}</td>
+          <td> <img src="http://localhost/agua-poin/public/storage/{{ producto.getImgName() }}" class="img-thumbnail" width="100" height="100" alt=""></td>
+          <td>
+            <a class="btn btn-default" routerLink="show/{{ producto.getId() }}" routerLinkActive="active">Ver</a>
+            <a class="btn btn-warning" routerLink="edit/{{ producto.getId() }}" routerLinkActive="active">Editar</a>
+            <button type="button" class="btn btn-danger" (click)="deleteProducto(producto.getId())">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer text-muted">
+    <a class="btn btn-primary" routerLink="create" routerLinkActive="active">Crear producto</a>
+  </div>
+</div>
 
 <app-preloader></app-preloader>
-
-<a class="btn btn-primary" routerLink="create" routerLinkActive="active">Crear producto</a>
