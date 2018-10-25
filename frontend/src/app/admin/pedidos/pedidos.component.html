@@ -1,26 +1,37 @@
-<h2>Pedidos</h2>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Nombre</th>
-      <th>Direccion</th>
-      <th>Producto</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let pedido of pedidos">
-      <th scope="row">{{ pedido.getId() }}</th>
-      <td>{{ pedido.getNombre() }}</td>
-      <td>{{ pedido.getDireccion() }}</td>
-      <td>{{ pedido.getProducto().getNombre() }}</td>
-      <td>
-        <a class="btn btn-default" routerLink="show/{{ pedido.getId() }}" routerLinkActive="active">Ver</a>
-        <a class="btn btn-warning" routerLink="edit/{{ pedido.getId() }}" routerLinkActive="active">Editar</a>
-        <button type="button" class="btn btn-danger" (click)="deleteNota(pedido.getId())">Eliminar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="card text-center">
+  <div class="card-header">
+    Pedidos
+  </div>
+  <div class="card-body">
+    <table class="table table-borderless table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Direccion</th>
+          <th>Telefono</th>
+          <th>Cantidad</th>
+          <th>Horario</th>
+          <th>Producto</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pedido of pedidos">
+          <th scope="row">{{ pedido.getId() }}</th>
+          <td>{{ pedido.getNombre() }}</td>
+          <td>{{ pedido.getDireccion() }}</td>
+          <td>{{ pedido.getTelefono() }}</td>
+          <td>{{ pedido.getCantidad() }}</td>
+          <td>{{ pedido.getHorario() }}</td>
+          <td>
+            <img src="http://localhost/agua-poin/public/storage/{{ pedido.getProducto().getImgName() }}" class="img-thumbnail" width="100" height="100" alt="">
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="deleteNota(pedido.getId())">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
