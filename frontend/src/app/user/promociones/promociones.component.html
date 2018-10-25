@@ -1,0 +1,11 @@
+<div class="promociones-container">
+  <div class="bar-header-promociones">
+      <div class="container">
+        <h2>Productos</h2>
+      </div>
+    </div>
+    
+    <div *ngFor="let promocion of promociones" class="promocion text-center">
+      <img src="http://localhost/agua-poin/public/storage/{{ promocion.getImgName() }}" alt="">
+    </div>
+</div>

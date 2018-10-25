@@ -7,6 +7,7 @@ import { UserComponent } from './user.component';
 import { NotasComponent } from './notas/notas.component';
 import { ProductosComponent } from './productos/productos.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
+import { PromocionesComponent } from './promociones/promociones.component';
 
 @NgModule({
   imports: [
@@ -14,6 +15,6 @@ import { PedidosComponent } from './pedidos/pedidos.component';
     UserRoutingModule,
     FormsModule
   ],
-  declarations: [UserComponent, NotasComponent, ProductosComponent, PedidosComponent]
+  declarations: [UserComponent, NotasComponent, ProductosComponent, PedidosComponent, PromocionesComponent]
 })
 export class UserModule { }
