@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import animateScrollTo from 'animated-scroll-to';
 
 @Component({
   selector: 'app-user',
@@ -27,6 +28,17 @@ export class UserComponent implements OnInit {
         navbar.classList.add("navbar-yellow");
       }
     };
+  }
+
+  private runScroll(seccion: string): void{
+
+    if(typeof seccion !== 'number'){
+
+      animateScrollTo(document.getElementById(seccion));
+    }else{
+
+      animateScrollTo(seccion);
+    }
   }
 
 }

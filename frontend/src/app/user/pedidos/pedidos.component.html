@@ -1,4 +1,4 @@
-<div class="pedidos">
+<div class="pedidos" id="pedidos-container">
   <div class="container pedidos-container">
       <h2 class="text-center">Pedidos</h2>
 
@@ -39,7 +39,10 @@
             </div>
           </div>
         </div>
-
+        <div class="preloader-container text-center">
+          <app-preloader></app-preloader>
+          <h2 id="preloader-text">Pedido enviado</h2>
+        </div>
       </form>
   </div>
 </div>

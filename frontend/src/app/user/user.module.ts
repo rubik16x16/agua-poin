@@ -8,12 +8,14 @@ import { NotasComponent } from './notas/notas.component';
 import { ProductosComponent } from './productos/productos.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { PromocionesComponent } from './promociones/promociones.component';
+import { HelpersModule } from '../helpers/helpers.module';
 
 @NgModule({
   imports: [
     CommonModule,
     UserRoutingModule,
-    FormsModule
+    FormsModule,
+    HelpersModule
   ],
   declarations: [UserComponent, NotasComponent, ProductosComponent, PedidosComponent, PromocionesComponent]
 })

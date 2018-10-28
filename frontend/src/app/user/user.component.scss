@@ -1,3 +1,8 @@
+.navbar{
+
+  transition: .3s background linear 0s;
+}
+
 .navbar-yellow{
 
   background: none;
@@ -11,5 +16,15 @@
 .front-img{
 
   background: #53cde2;
-  height: 500px;
+  height: 700px;
+  overflow: hidden;
+  position: relative;
+}
+
+.front-img img{
+
+  width: 100%;
+  position: absolute;
+  top: -200px;
+  opacity: .5;
 }

@@ -21,6 +21,9 @@ export class PedidosComponent implements OnInit {
   private cantidad: number;
   private horario: string;
 
+  private preloader: any;
+  private preloaderText: any;
+
   constructor(
     private productosService: ProductosService,
     private pedidosService: PedidosService
@@ -33,22 +36,39 @@ export class PedidosComponent implements OnInit {
 
   private getProductos(): void{
 
+    this.preloaderText= document.getElementById('preloader-text');
+    this.preloader= document.getElementById('preloader');
+
+    this.preloaderText.classList.toggle('fade-out');
+    this.preloader.classList.toggle('fade-out');
+
     this.productosService.getProductos().subscribe(
       productos => {
         for(let producto of productos){
           this.productos.push(new Producto(producto.id, producto.nombre, producto.precio, producto.img, null));
-        }
-      }
+        }//end for
+      }//end closure 
     );
   }//end getProductos
 
   private addPedido(): void{
 
+    if(!this.preloaderText.classList.contains('fade-out')){
+
+      this.preloaderText.classList.toggle('fade-out');
+    }//end if
+
+    this.preloader.classList.toggle('fade-out');
+
     this.pedidosService.storePedido(new Pedido(
       0, this.nombre, this.telefono,
       this.direccion, this.producto, this.cantidad,
       this.horario)).subscribe(
-        pedido => console.log(pedido)
+        pedido => {
+          this.preloader.classList.toggle('fade-out');
+          this.preloaderText.classList.toggle('fade-out');
+          console.log(pedido);
+        }//end closore
       );
   }//end addPedido
 }//end PedidosComponent class

@@ -24,3 +24,19 @@
   padding: 7px 20px;
   border: none;
 }
+
+.preloader-container{
+
+  position: relative;
+  margin: 40px 0;
+}
+
+.preloader-container h2{
+
+  transition: .3s opacity linear 0s;
+}
+
+.fade-out{
+
+  opacity: 0;
+}

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-yellow" id="navbar">
-  <a class="navbar-brand" routerLink="/" routerLinkActive="active">Agua Point</a>
+  <a class="navbar-brand" href="javascript:void(0)" (click)="runScroll(0)">Agua Point</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,22 +7,24 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/" routerLinkActive="active">Inicio<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="javascript:void(0)" (click)="runScroll('notas-container')">Notas<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/notas" routerLinkActive="active">Notas</a>
+        <a class="nav-link" href="javascript:void(0)" (click)="runScroll('productos-container')">Productos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/promociones" routerLinkActive="active">Promociones</a>
+        <a class="nav-link" href="javascript:void(0)" (click)="runScroll('promociones-container')">Promociones</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/pedido" routerLinkActive="active">Pedido</a>
+        <a class="nav-link" href="javascript:void(0)" (click)="runScroll('pedidos-container')">Pedidos</a>
       </li>
     </ul>
   </div>
 </nav>
 
-<div class="front-img"></div>
+<div class="front-img">
+  <img src="assets/DSC_0636b.jpg" alt="">
+</div>
 
 <app-notas></app-notas>
 <app-productos></app-productos>
