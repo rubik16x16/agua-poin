@@ -16,7 +16,8 @@ class CreatePromocionesTable extends Migration{
     Schema::create('promociones', function (Blueprint $table) {
       $table->increments('id');
       $table->string('nombre');
-      $table->string('img');
+      $table->string('media');
+      $table->string('src');
       $table->timestamps();
     });
   }//end up

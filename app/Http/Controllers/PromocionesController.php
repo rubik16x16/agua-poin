@@ -9,73 +9,104 @@ use Illuminate\Support\Facades\Storage;
 
 class PromocionesController extends Controller{
 
-  /**
-   * Display a listing of the resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function index(){
+	public function test(Request $request){
 
-    return response()->json(Promocion::all()->toArray());
-  }//end index
+		$videoId= substr(strrchr($request->str, '='), 1);
+		return $videoId;
+	}
 
-  /**
-   * Store a newly created resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\Response
-   */
-  public function store(Request $request){
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index(){
 
-    $promocion= new Promocion($request->all());
-    $promocion->img = $request->file('img')->store('imgs/promociones', 'public');
-    $promocion->save();
-    return response()->json($promocion->toArray());
-  }//end store
+		return response()->json(Promocion::all()->toArray());
+	}//end index
 
-  /**
-   * Display the specified resource.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function show($id){
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store(Request $request){
 
-    $promocion= Promocion::find($id);
-    return response()->json($promocion->toArray());
-  }//end show
+		$promocion= new Promocion($request->all());
+		if($promocion->media == 'imagen'){
 
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function update(Request $request, $id){
+			$promocion->src= $request->file('src')->store('imgs/promociones', 'public');
+		}else{
 
-    $promocion= Promocion::find($id);
-    $promocion->fill($request->all());
-    
-    if($request->file('img') !== NULL){
+			$promocion->src= substr(strrchr($request->src, '='), 1);
+		}
+		$promocion->save();
+		return response()->json($promocion->toArray());
+	}//end store
 
-      Storage::disk('public')->delete($promocion->img);
-      $promocion->img = $request->file('img')->store('imgs/promociones', 'public');
-    }//end if
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show($id){
 
-    $promocion->save();
-  }//end update
+		$promocion= Promocion::find($id);
+		return response()->json($promocion->toArray());
+	}//end show
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function destroy($id){
-    
-    $promocion= Promocion::find($id);
-    Storage::disk('public')->delete($promocion->img);
-    $promocion->delete();
-  }//end destroy
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function update(Request $request, $id){
+
+		$promocion= Promocion::find($id);
+		if($request->media == 'imagen'){
+			
+			if($promocion->media == 'imagen'){
+
+				if($request->file('src') !== NULL){
+
+					Storage::disk('public')->delete($promocion->src);
+					$promocion->src = $request->file('src')->store('imgs/promociones', 'public');
+				}//end if
+			}else{
+
+        Storage::disk('public')->delete($promocion->src);
+				$promocion->src= $request->file('src')->store('imgs/promociones', 'public');
+			}//end else
+		}else{
+
+			if($promocion->media == 'imagen'){
+
+				Storage::disk('public')->delete($promocion->src);
+			}
+			$promocion->src= substr(strrchr($request->src, '='), 1);
+		}//end else
+
+		$promocion->fill($request->except(['src']));
+		$promocion->save();
+	}//end update
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy($id){
+		
+		$promocion= Promocion::find($id);
+		if($promocion->media == 'imagen'){
+
+			Storage::disk('public')->delete($promocion->img);
+		}
+		$promocion->delete();
+	}//end destroy
 }//end PromocionesController class

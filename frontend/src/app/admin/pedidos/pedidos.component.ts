@@ -41,4 +41,10 @@ export class PedidosComponent implements OnInit {
       }//end closure
     );
   }//end getPedidos
+
+  private deletePedido(id: number): void{
+
+    this.pedidos= this.pedidos.filter(nota => nota.getId() != id);
+    this.pedidosService.deletePedido(id).subscribe();
+  }//end deletePedido
 }//end PedidosComponent

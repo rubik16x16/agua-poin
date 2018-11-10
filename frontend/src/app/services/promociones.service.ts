@@ -21,10 +21,16 @@ export class PromocionesService {
     private messageService: MessageService
   ) { }
 
-  getPromociones(): Observable<any[]>{
+  getPromociones(): Observable<any>{
 
-    return this.http.get<any[]>(this.PROMOCIONES_URL)
+    return this.http.get<any>(this.PROMOCIONES_URL)
       .pipe(
+        map(
+          res => {
+            
+           return res.map(item => { return new Promocion(item.id, item.nombre, item.media, item.src) });
+          }
+        ),
         tap(_ => this.log('fetched promociones')),
         catchError(this.handleError('getPromociones', []))
       );
@@ -34,6 +40,12 @@ export class PromocionesService {
 
     return this.http.get<any>(`${this.PROMOCIONES_URL}/${id}`)
     .pipe(
+      map(
+        res => {
+          
+          return new Promocion(res.id, res.nombre, res.media, res.src)
+        }
+      ),
       tap(_ => this.log(`fetched promocion id:${id}`)),
       catchError(this.handleError('getPromocion', []))
     )
@@ -43,7 +55,12 @@ export class PromocionesService {
 
     let promocionData: FormData= new FormData();
     promocionData.append('nombre', promocion.getNombre());
-    promocionData.append('img', promocion.getImgFile());
+    promocionData.append('media', promocion.getMedia());
+    if(promocion.getMedia() == 'video'){
+      promocionData.append('src', promocion.getSrc());
+    }else{
+      promocionData.append('src', promocion.getImgFile());
+    }
 
     return this.http.post<any>(this.PROMOCIONES_URL, promocionData)
       .pipe(
@@ -57,7 +74,12 @@ export class PromocionesService {
     let promocionData: FormData= new FormData();
     promocionData.append('_method', 'PUT');
     promocionData.append('nombre', promocion.getNombre());
-    promocionData.append('img', promocion.getImgFile());
+    promocionData.append('media', promocion.getMedia());
+    if(promocion.getMedia() == 'video'){
+      promocionData.append('src', promocion.getSrc());
+    }else{
+      promocionData.append('src', promocion.getImgFile());
+    }
 
     return this.http.post(`${this.PROMOCIONES_URL}/${id}`, promocionData).
       pipe(

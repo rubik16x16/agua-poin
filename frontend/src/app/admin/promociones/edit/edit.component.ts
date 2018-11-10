@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { PromocionesService } from '../../../services/promociones.service';
 import { Promocion } from '../../../models/promocion';
@@ -12,11 +13,17 @@ import { Promocion } from '../../../models/promocion';
 })
 export class EditComponent implements OnInit {
 
-  private id: number;
-  private nombre: string;
-  private imgName: string;
   private fileUrl: string;
   private fileToUpload: File = null;
+  private id: number;
+
+  private promocionForm= new FormGroup({
+    media: new FormGroup({
+      type: new FormControl(),
+      src: new FormControl()
+    }),
+    nombre: new FormControl()
+  });
 
   constructor(
     private route: ActivatedRoute,
@@ -26,24 +33,32 @@ export class EditComponent implements OnInit {
 
   ngOnInit() {
 
+    this.id= +this.route.snapshot.paramMap.get('id');
     this.getPromocion();
   }
 
   private getPromocion(): void{
 
-    const id = +this.route.snapshot.paramMap.get('id');
-
-    this.promocionesService.getPromocion(id).subscribe(promocion => {
-      this.id= promocion.id;
-      this.nombre= promocion.nombre;
-      this.imgName= promocion.img;
-      this.fileUrl= `http://localhost/agua-poin/public/storage/${ promocion.img }`;
-    });
+    this.promocionesService.getPromocion(this.id).subscribe(
+      promocion => {
+        this.promocionForm.controls.nombre.setValue(promocion.getNombre());
+        let media: FormGroup= this.promocionForm.controls.media as FormGroup;
+        media.controls.type.setValue(promocion.getMedia());
+        if(promocion.getMedia() == 'video'){
+          media.controls.src.setValue(promocion.getSrc());
+        }else{
+          this.fileUrl= `http://localhost/agua-poin/public/storage/${promocion.getSrc()}`;
+        }
+      }
+    );
   }//end getPromocion
 
   private updatePromocion(): void{
 
-    let promocion= new Promocion(this.id, this.nombre, '', this.fileToUpload);
+    let promocionData= this.promocionForm.value;
+
+    let promocion= new Promocion(0, promocionData.nombre, promocionData.media.type,
+      promocionData.media.src, this.fileToUpload);
 
     this.promocionesService.updatePromocion(this.id, promocion).subscribe(
       _ => this.goBack()

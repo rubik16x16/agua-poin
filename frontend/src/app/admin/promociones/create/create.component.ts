@@ -1,54 +1,65 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { PromocionesService } from '../../../services/promociones.service';
 import { Promocion } from '../../../models/promocion';
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+	selector: 'app-create',
+	templateUrl: './create.component.html',
+	styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit {
 
-  private nombre: string;
-  private fileUrl: string;
-  private fileToUpload: File = null;
+	private fileUrl: string;
+	private fileToUpload: File = null;
+	
+	private promocionForm= new FormGroup({
+		media: new FormGroup({
+			type: new FormControl('imagen'),
+			src: new FormControl()
+		}),
+		nombre: new FormControl()
+	});
 
-  constructor(
-    private promocionesService: PromocionesService,
-    private location: Location
-  ) { }
+	constructor(
+		private promocionesService: PromocionesService,
+		private location: Location
+	) { }
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
-  private storePromocion(){
+	private storePromocion(){
 
-    let promocion= new Promocion(0, this.nombre, '', this.fileToUpload);
+		let promocionData= this.promocionForm.value;
 
-    this.promocionesService.storePromocion(promocion).subscribe(
-      _ => this.goBack()
-    );
-  }//end storePromocion
+		let promocion= new Promocion(0, promocionData.nombre, promocionData.media.type,
+			promocionData.media.src, this.fileToUpload);
 
-  private onSelectFile(event) { // called each time file input changes
+		this.promocionesService.storePromocion(promocion).subscribe(
+			_ => this.goBack()
+		);
+	}//end storePromocion
 
-    if (event.target.files && event.target.files[0]) {
+	private onSelectFile(event) { // called each time file input changes
 
-      this.fileToUpload = event.target.files[0];
+		if (event.target.files && event.target.files[0]) {
 
-      var reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.fileUrl = event.target.result;
-      }//end closure
-    }//end if
-  }//end onSelectFile
+			this.fileToUpload = event.target.files[0];
 
-  private goBack(): void {
+			var reader = new FileReader();
+			reader.readAsDataURL(event.target.files[0]); // read file as data url
+			reader.onload = (event) => { // called once readAsDataURL is completed
+				this.fileUrl = event.target.result;
+			}//end closure
+		}//end if
+	}//end onSelectFile
 
-    this.location.back();
-  }//end goBack
+	private goBack(): void {
+
+		this.location.back();
+	}//end goBack
 }//end CreateComponent class
 

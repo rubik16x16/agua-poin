@@ -3,20 +3,36 @@
     Nueva promocion
   </div>
   <div class="card-body text-center">
-    <form>
+    <form [formGroup]= "promocionForm">
       <div class="form-row">
         <div class="col-6">
           <div class="form-group">
-            <input [(ngModel)]="nombre" type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre">
+            <input formControlName="nombre" type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre">
           </div>
         </div>
-        <div class="col-6">
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" id="customFile" (change)="onSelectFile($event)">
-            <label class="custom-file-label" for="customFile">Choose file</label>
+        <div class="col-6" formGroupName="media">
+          <label>Seleccione tipo de medio</label>
+          <div class="form-group">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" formControlName="type" type="radio" name="type" id="video" value="video">
+              <label class="form-check-label" for="video">Video</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" formControlName="type" type="radio" name="type" id="imagen" value="imagen">
+              <label class="form-check-label" for="imagen">Imagen</label>
+            </div>
           </div>
-          <div class="img-upload">
-            <img [src]="fileUrl" alt="{{ nombre }}">
+          <div class="img-media" *ngIf="promocionForm.value.media.type == 'imagen'">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="customFile" (change)="onSelectFile($event)">
+              <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+            <div class="img-upload">
+              <img [src]="fileUrl" alt="{{ nombre }}">
+            </div>
+          </div>
+          <div class="video-media" *ngIf="promocionForm.value.media.type == 'video'">
+            <input type="text" class="form-control" formControlName="src" name="src" placeholder="Video Link">
           </div>
         </div>
       </div>

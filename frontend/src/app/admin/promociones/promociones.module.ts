@@ -6,12 +6,14 @@ import { PromocionesRoutingModule } from './promociones-routing.module';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { PromocionesComponent } from './promociones.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     PromocionesRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [CreateComponent, EditComponent, PromocionesComponent]
 })

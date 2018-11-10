@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Promocion extends Model{
 
   protected $table= 'promociones';
-  protected $fillable= ['nombre'];
+  protected $fillable= ['nombre', 'media', 'src'];
 }

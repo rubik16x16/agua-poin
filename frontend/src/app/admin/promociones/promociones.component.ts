@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { PromocionesService } from '../../services/promociones.service';
 import { Promocion } from '../../models/promocion';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-promociones',
@@ -10,10 +11,11 @@ import { Promocion } from '../../models/promocion';
 })
 export class PromocionesComponent implements OnInit {
 
-  private promociones: Array<Promocion>= [];
+  private promociones: Array<Promocion>;
 
   constructor(
-    private promocionesService: PromocionesService
+    private promocionesService: PromocionesService,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -25,9 +27,8 @@ export class PromocionesComponent implements OnInit {
 
     this.promocionesService.getPromociones().subscribe(
       promociones =>{
-        for(let promocion of promociones){
-          this.promociones.push(new Promocion(promocion.id, promocion.nombre, promocion.img, null));
-        }
+
+        this.promociones= promociones;
       }
     );
   }//end getPromociones
@@ -37,4 +38,10 @@ export class PromocionesComponent implements OnInit {
     this.promociones= this.promociones.filter(nota => nota.getId() != id);
     this.promocionesService.deletePromocion(id).subscribe();
   }//end deletePromocion
+
+  private updateVideoUrl(id: string): SafeUrl{
+
+    let videoUrl= 'https://www.youtube.com/embed/' + id;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(videoUrl);
+  }
 }//end PromocionesComponent
