@@ -40,7 +40,7 @@ export class EditComponent implements OnInit {
         this.nombre= producto.nombre;
         this.precio= producto.precio;
         this.imgName= producto.img;
-        this.fileUrl= `http://localhost/agua-poin/public/storage/${ producto.img }`;
+        this.fileUrl= `http://31.220.60.62/agua-poin/public/storage/${ producto.img }`;
       });
   }//end getProducto
 

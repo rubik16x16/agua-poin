@@ -1,72 +1,89 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { NotasService } from '../../../services/notas.service';
 import { Nota } from '../../../models/nota';
 
 @Component({
-  selector: 'app-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
+	selector: 'app-edit',
+	templateUrl: './edit.component.html',
+	styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
 
-  private id: number;
-  private titulo: string;
-  private cuerpo: string;
-  private imgName: string;
-  private fileUrl: string;
-  private fileToUpload: File = null;
+	private id: number;
+	private fileUrl: string;
+	private fileToUpload: File = null;
 
-  constructor(
-    private route: ActivatedRoute,
-    private notasService: NotasService,
-    private location: Location
-  ) { }
+	private frmNota= new FormGroup({
+		titulo: new FormControl(),
+		cuerpo: new FormControl(),
+		media: new FormGroup({
+			type: new FormControl(),
+			src: new FormControl()
+		})
+	});
 
-  ngOnInit() {
+	constructor(
+		private route: ActivatedRoute,
+		private notasService: NotasService,
+		private location: Location
+	) { }
 
-    this.getNota();
-  }//end ngOnInit
+	ngOnInit() {
 
-  private getNota(): void{
+		this.getNota();
+	}//end ngOnInit
 
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.notasService.getNota(id).subscribe(nota => {
-      this.id= nota.id;
-      this.titulo= nota.titulo;
-      this.cuerpo= nota.cuerpo;
-      this.imgName= nota.img;
-      this.fileUrl= `http://localhost/agua-poin/public/storage/${ nota.img }`;
-    });
-  }//end getNota
+	private getNota(): void{
 
-  private updateNota(): void{
+		this.id = +this.route.snapshot.paramMap.get('id');
+		this.notasService.getNota(this.id).subscribe(nota => {
 
-    let nota: Nota= new Nota(this.id, this.titulo, this.cuerpo, '', this.fileToUpload);
+			let media= this.frmNota.controls.media as FormGroup;
+			this.frmNota.controls.titulo.setValue(nota.getTitulo());
+			this.frmNota.controls.cuerpo.setValue(nota.getCuerpo());
+			media.controls.type.setValue(nota.getMedia());
+		  if(nota.getMedia() == 'imagen'){
+				
+				this.fileUrl= `http://localhost/agua-poin/public/storage/${nota.getSrc()}`;
+			}else{
 
-    this.notasService.updateNota(this.id, nota).subscribe(
-      _ => this.goBack()
-    );
-  }//end updateNota
+				media.controls.src.setValue(nota.getSrc());
+			}
+		});
+	}//end getNota
 
-  private onSelectFile(event): void{ // called each time file input changes
+	private updateNota(): void{
 
-    if (event.target.files && event.target.files[0]) {
+		let notaData= this.frmNota.value;
 
-      this.fileToUpload = event.target.files[0];
+		let nota: Nota= new Nota(this.id, notaData.titulo, notaData.cuerpo,
+			notaData.media.type, notaData.media.src, this.fileToUpload);
 
-      var reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.fileUrl = event.target.result;
-      }//end closure
-    }//end if
-  }//end onSelectFile
+		this.notasService.updateNota(this.id, nota).subscribe(
+			_ => this.goBack()
+		);
+	}//end updateNota
 
-  private goBack(): void {
+	private onSelectFile(event): void{ // called each time file input changes
 
-    this.location.back();
-  }//end goBack
+		if (event.target.files && event.target.files[0]) {
+
+			this.fileToUpload = event.target.files[0];
+
+			var reader = new FileReader();
+			reader.readAsDataURL(event.target.files[0]); // read file as data url
+			reader.onload = (event) => { // called once readAsDataURL is completed
+				this.fileUrl = event.target.result;
+			}//end closure
+		}//end if
+	}//end onSelectFile
+
+	private goBack(): void {
+
+		this.location.back();
+	}//end goBack
 }

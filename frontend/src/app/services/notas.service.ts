@@ -21,10 +21,16 @@ export class NotasService{
     private messageService: MessageService
   ) { }
 
-  getNotas(): Observable<any[]>{
+  getNotas(): Observable<any>{
 
-    return this.http.get<any[]>(this.NOTAS_URL)
+    return this.http.get<any>(this.NOTAS_URL)
       .pipe(
+        map(
+          res => {
+            return res.map(item => { return new Nota(item.id, item.titulo, item.cuerpo,
+              item.media, item.src) });
+          }
+        ),
         tap(_ => this.log('fetched notas')),
         catchError(this.handleError('getNotas', []))
       );
@@ -34,6 +40,10 @@ export class NotasService{
 
     return this.http.get<any>(`${this.NOTAS_URL}/${id}`)
     .pipe(
+      map(
+        item => { return new Nota(item.id, item.titulo, item.cuerpo,
+          item.media, item.src) }
+      ),
       tap(_ => this.log(`fetched nota id:${id}`)),
       catchError(this.handleError('getNota', []))
     )
@@ -44,7 +54,13 @@ export class NotasService{
     let notaData: FormData= new FormData();
     notaData.append('titulo', nota.getTitulo());
     notaData.append('cuerpo', nota.getCuerpo());
-    notaData.append('img', nota.getImgFile());
+    notaData.append('media', nota.getMedia());
+    
+    if(nota.getMedia() == 'imagen'){
+      notaData.append('src', nota.getImgFile());
+    }else{
+      notaData.append('src', nota.getSrc());
+    }
 
     return this.http.post<any>(this.NOTAS_URL, notaData)
       .pipe(
@@ -59,7 +75,13 @@ export class NotasService{
     notaData.append('_method', 'PUT');
     notaData.append('titulo', nota.getTitulo());
     notaData.append('cuerpo', nota.getCuerpo());
-    notaData.append('img', nota.getImgFile());
+    notaData.append('media', nota.getMedia());
+    
+    if(nota.getMedia() == 'imagen'){
+      notaData.append('src', nota.getImgFile());
+    }else{
+      notaData.append('src', nota.getSrc());
+    }
 
     return this.http.post(`${this.NOTAS_URL}/${id}`, notaData).
       pipe(

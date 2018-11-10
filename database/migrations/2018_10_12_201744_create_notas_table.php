@@ -16,7 +16,8 @@ class CreateNotasTable extends Migration{
       $table->increments('id');
       $table->string('titulo');
       $table->text('cuerpo');
-      $table->string('img');
+      $table->string('media');
+      $table->string('src');
       $table->timestamps();
     });
   }

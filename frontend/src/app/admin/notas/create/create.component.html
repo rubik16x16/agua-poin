@@ -3,23 +3,39 @@
     Nueva nota
   </div>
   <div class="card-body text-center">
-    <form>
+    <form [formGroup]="frmNota">
       <div class="form-row">
         <div class="col-6">
           <div class="form-group">
-            <input [(ngModel)]="titulo" type="text" name="titulo" class="form-control" id="titulo" placeholder="Titulo">
+            <input formControlName="titulo" type="text" name="titulo" class="form-control" id="titulo" placeholder="Titulo">
           </div>
           <div class="form-group">
-            <textarea [(ngModel)]="cuerpo" name="cuerpo" class="form-control" id="cuerpo" rows="8" cols="80" placeholder="Cuerpo"></textarea>
+            <textarea formControlName="cuerpo" name="cuerpo" class="form-control" id="cuerpo" rows="8" cols="80" placeholder="Cuerpo"></textarea>
           </div>
         </div>
-        <div class="col-6">
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" id="customFile" (change)="onSelectFile($event)">
-            <label class="custom-file-label" for="customFile">Choose file</label>
+        <div class="col-6" formGroupName="media">
+          <label>Seleccione tipo de medio</label>
+          <div class="form-group">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" formControlName="type" type="radio" name="type" id="video" value="video">
+              <label class="form-check-label" for="video">Video</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" formControlName="type" type="radio" name="type" id="imagen" value="imagen">
+              <label class="form-check-label" for="imagen">Imagen</label>
+            </div>
           </div>
-          <div class="img-upload">
-            <img [src]="fileUrl" alt="{{ titulo }}">
+          <div class="img-media" *ngIf="frmNota.value.media.type == 'imagen'">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="customFile" (change)="onSelectFile($event)">
+              <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+            <div class="img-upload">
+              <img [src]="fileUrl" alt="">
+            </div>
+          </div>
+          <div class="video-media" *ngIf="frmNota.value.media.type == 'video'">
+            <input type="text" class="form-control" formControlName="src" name="src" placeholder="Video Link">
           </div>
         </div>
       </div>

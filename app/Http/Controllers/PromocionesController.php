@@ -106,7 +106,7 @@ class PromocionesController extends Controller{
 		if($promocion->media == 'imagen'){
 
 			Storage::disk('public')->delete($promocion->img);
-		}
+		}//end if
 		$promocion->delete();
 	}//end destroy
 }//end PromocionesController class

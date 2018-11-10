@@ -4,8 +4,9 @@ export class Nota{
     private id: number,
     private titulo: string,
     private cuerpo: string,
-    private imgName: string,
-    private imgFile: File
+    private media: string,
+    private src: string,
+    private imgFile: File = null
     ){ }
 
   getId(): number{
@@ -38,15 +39,25 @@ export class Nota{
     this.cuerpo= cuerpo;
   }//end setCuerpo
 
-  getImgName(): string{
+  getMedia(): string{
 
-    return this.imgName;
-  }//end getImgName
+    return this.media;
+  }//end getMedia
 
-  setImgName(imgName: string): void{
+  setMedia(media: string): void{
 
-    this.imgName= imgName;
-  }//end setImgName
+    this.media= media;
+  }//end setMedia
+
+  getSrc(): string{
+
+    return this.src;
+  }//end getSrc
+
+  setSrc(src: string): void{
+
+    this.src= src;
+  }//end setSrc
 
   getImgFile(): File{
 

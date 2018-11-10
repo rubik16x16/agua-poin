@@ -18,7 +18,12 @@
           <th scope="row">{{ nota.getId() }}</th>
           <td>{{ nota.getTitulo() }}</td>
           <td>{{ nota.getCuerpo() }}</td>
-          <td> <img src="http://localhost/agua-poin/public/storage/{{ nota.getImgName() }}" class="img-thumbnail" alt=""></td>
+          <td *ngIf="nota.getMedia() == 'imagen'">
+            <img src="http://localhost/agua-poin/public/storage/{{ nota.getSrc() }}" class="img-thumbnail" alt="">
+          </td>
+          <td *ngIf="nota.getMedia() == 'video'">
+            <iframe width="300" height="200" [src]="updateVideoUrl(nota.getSrc())" frameborder="0"></iframe>
+          </td>
           <td>
             <a class="btn btn-default" routerLink="show/{{ nota.getId() }}" routerLinkActive="active">Ver</a>
             <a class="btn btn-warning" routerLink="edit/{{ nota.getId() }}" routerLinkActive="active">Editar</a>
