@@ -10,6 +10,7 @@ export class Pedido{
     private producto: Producto,
     private cantidad: number,
     private horario: string,
+    private fecha: string
   ){ }
 
   getId(): number{
@@ -81,4 +82,14 @@ export class Pedido{
 
     this.horario= horario;
   }//end setHorario
+
+  getFecha(): string{
+
+    return this.fecha;
+  }//end getFecha
+
+  setFecha(fecha: string){
+
+    this.fecha= fecha;
+  }//end setFecha
 }//end Pedido class

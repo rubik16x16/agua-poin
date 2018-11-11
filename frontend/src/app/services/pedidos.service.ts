@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Pedido } from '../models/pedido';
+import { Producto } from '../models/producto';
 
 @Injectable({
   providedIn: 'root'
@@ -21,10 +22,23 @@ export class PedidosService {
     private messageService: MessageService
   ) { }
 
-  getPedidos(): Observable<any[]>{
+  getPedidos(): Observable<any>{
 
-    return this.http.get<any[]>(this.PEDIDOS_URL)
+    return this.http.get<any>(this.PEDIDOS_URL)
       .pipe(
+        map(
+          res => { return res.map(item => {
+            let dataProducto= item.producto;
+            let producto= new Producto(
+              dataProducto.id, dataProducto.nombre, dataProducto.precio,
+              dataProducto.img, null
+            );
+
+            return new Pedido(
+              item.id, item.nombre, item.telefono, item.direccion,
+              producto, item.cantidad, item.horario, item.fecha);
+          }); }
+        ),
         tap(_ => this.log('fetched pedidos')),
         catchError(this.handleError('getPedidos', []))
       );

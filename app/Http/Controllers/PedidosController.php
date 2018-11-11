@@ -13,7 +13,21 @@ class PedidosController extends Controller{
    */
   public function index(){
 
-    return response()->json(Pedido::all()->load('producto')->toArray());
+    $meses= [
+      'enero', 'febrero', 'marzo', 'abril',
+      'mayo', 'junio', 'julio', 'agosto',
+      'septiembre', 'octubre', 'noviembre',
+      'diciembre'
+    ];
+
+    $pedidos= Pedido::all()->load('producto');
+    
+    $pedidos->each(function($pedido) use ($meses){
+      $date= new \DateTime($pedido->created_at);
+      $pedido->fecha= sprintf('%d de %s de %s',$date->format('d'), $meses[$date->format('m') - 1], $date->format('Y'));
+    });
+
+    return response()->json($pedidos);
   }//end index
 
   /**

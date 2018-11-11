@@ -11,7 +11,7 @@ import { Producto } from '../../models/producto';
 })
 export class PedidosComponent implements OnInit {
 
-  private pedidos: Array<Pedido>= [];
+  private pedidos: Array<Pedido>;
 
   constructor(
     private pedidosService: PedidosService
@@ -26,18 +26,8 @@ export class PedidosComponent implements OnInit {
     this.pedidosService.getPedidos().subscribe(
       pedidos => {
 
-        for(let pedido of pedidos){
-
-          let dataProducto= pedido.producto;
-          let producto= new Producto(
-            dataProducto.id, dataProducto.nombre, dataProducto.precio,
-            dataProducto.img, null
-          );
-
-          this.pedidos.push(new Pedido(
-            pedido.id, pedido.nombre, pedido.telefono, pedido.direccion,
-            producto, pedido.cantidad, pedido.horario));
-        }//end for
+        this.pedidos= pedidos;
+        console.log(pedidos[0].getFecha());
       }//end closure
     );
   }//end getPedidos
