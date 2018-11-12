@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 
 import { NotasService } from './../../services/notas.service';
 import { Nota } from '../../models/nota';
@@ -13,7 +14,8 @@ export class NotasComponent implements OnInit {
   notas: Array<Nota>= [];
 
   constructor(
-    private notasService: NotasService
+    private notasService: NotasService,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(){
@@ -23,12 +25,14 @@ export class NotasComponent implements OnInit {
 
   private getNotas(): void{
 
-    this.notasService.getNotas().subscribe(notas => {
-
-      for(let nota of notas){
-
-        this.notas.push(new Nota(nota.id, nota.titulo, nota.cuerpo, nota.img, null));
-      }
-    });
+    this.notasService.getNotas().subscribe(
+      notas => this.notas= notas
+    )
   }//end getNotas
+
+  private updateVideoUrl(id: string): SafeUrl{
+
+    let videoUrl= 'https://www.youtube.com/embed/' + id;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(videoUrl);
+  }//end updateVideoUrl
 }//end NotasComponent class

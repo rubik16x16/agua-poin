@@ -45,5 +45,5 @@ export class NotasComponent implements OnInit {
 
     let videoUrl= 'https://www.youtube.com/embed/' + id;
     return this.sanitizer.bypassSecurityTrustResourceUrl(videoUrl);
-  }
+  }//end updateVideoUrl
 }//end NotasComponent

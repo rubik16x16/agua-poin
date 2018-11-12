@@ -11,13 +11,13 @@
   margin: 80px 0;
 }
 
-.nota-img img{
+.nota-media img{
 
   width: 140px;
   height: 140px;
 }
 
-.nota-img{
+.nota-media{
 
   float: left;
   margin: 10px;
@@ -37,7 +37,7 @@
 
 .nota-card:nth-child(odd) {
 
-  .nota-img{
+  .nota-media{
 
     float: right;
   }

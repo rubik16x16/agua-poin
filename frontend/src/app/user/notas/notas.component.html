@@ -8,8 +8,9 @@
 
   <div class="container">
     <div class="nota-card" *ngFor="let nota of notas">
-      <div class="nota-img">
-        <img src="http://localhost/agua-poin/public/storage/{{ nota.getImgName() }}" alt="">
+      <div class="nota-media">
+        <img *ngIf="nota.getMedia() == 'imagen'" src="http://localhost/agua-poin/public/storage/{{ nota.getSrc() }}" alt="">
+        <iframe *ngIf="nota.getMedia() == 'video'" width="300" height="200" [src]="updateVideoUrl(nota.getSrc())" frameborder="0"></iframe>
       </div>
       <div class="nota-text text-center">
         <h3>{{ nota.getTitulo() }}</h3>
