@@ -63,7 +63,7 @@ export class PedidosComponent implements OnInit {
     this.pedidosService.storePedido(new Pedido(
       0, this.nombre, this.telefono,
       this.direccion, this.producto, this.cantidad,
-      this.horario)).subscribe(
+      this.horario, '')).subscribe(
         pedido => {
           this.preloader.classList.toggle('fade-out');
           this.preloaderText.classList.toggle('fade-out');

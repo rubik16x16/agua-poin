@@ -25,6 +25,10 @@ const routes: Routes = [
       {
         path: 'promociones',
         loadChildren: './promociones/promociones.module#PromocionesModule'
+      },
+      {
+        path: 'slider',
+        loadChildren: './slider/slider.module#SliderModule'
       }
     ]
   }

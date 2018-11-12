@@ -1,0 +1,30 @@
+<div class="card">
+  <div class="card-header text-center">
+    Nueva Imagen
+  </div>
+  <div class="card-body text-center">
+    <form [formGroup]= "frmSliderImg">
+      <div class="form-row">
+        <div class="col-6">
+          <div class="form-group">
+            <input formControlName="nombre" type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="img-media">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="customFile" (change)="onSelectFile($event)">
+              <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+            <div class="img-upload">
+              <img [src]="fileUrl" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="card-footer text-muted">
+    <button type="button" class="btn btn-primary" (click)="updateSliderImg()">Guardar</button>
+  </div>
+</div>

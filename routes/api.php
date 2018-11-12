@@ -25,4 +25,6 @@ Route::resource('pedidos', 'PedidosController');
 
 Route::resource('promociones', 'PromocionesController');
 
+Route::resource('slider', 'SliderImgsController');
+
 Route::post('admin/login', 'LoginController@login');
