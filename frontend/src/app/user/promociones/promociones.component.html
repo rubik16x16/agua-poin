@@ -6,6 +6,7 @@
     </div>
     
     <div *ngFor="let promocion of promociones" class="promocion text-center">
-      <img src="http://localhost/agua-poin/public/storage/{{ promocion.getImgName() }}" alt="">
+      <iframe class="promocion-video" *ngIf="promocion.getMedia() == 'video'" [src]="updateVideoUrl(promocion.getSrc())" frameborder="0"></iframe>
+      <img *ngIf="promocion.getMedia() == 'imagen'" src="http://localhost/agua-poin/public/storage/{{ promocion.getSrc() }}" alt="">
     </div>
 </div>

@@ -18,7 +18,7 @@
           <th scope="row">{{ producto.getId() }}</th>
           <td>{{ producto.getNombre() }}</td>
           <td>{{ producto.getPrecio() }}</td>
-          <td> <img src="http://31.220.60.62/agua-poin/public/storage/{{ producto.getImgName() }}" class="img-thumbnail" width="100" height="100" alt=""></td>
+          <td> <img src="http://localhost/agua-poin/public/storage/{{ producto.getImgName() }}" class="img-thumbnail" width="100" height="100" alt=""></td>
           <td>
             <a class="btn btn-default" routerLink="show/{{ producto.getId() }}" routerLinkActive="active">Ver</a>
             <a class="btn btn-warning" routerLink="edit/{{ producto.getId() }}" routerLinkActive="active">Editar</a>
