@@ -9,6 +9,7 @@ import { ProductosComponent } from './productos/productos.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { PromocionesComponent } from './promociones/promociones.component';
 import { HelpersModule } from '../helpers/helpers.module';
+import { SliderComponent } from './slider/slider.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { HelpersModule } from '../helpers/helpers.module';
     FormsModule,
     HelpersModule
   ],
-  declarations: [UserComponent, NotasComponent, ProductosComponent, PedidosComponent, PromocionesComponent]
+  declarations: [UserComponent, NotasComponent, ProductosComponent, PedidosComponent, PromocionesComponent, SliderComponent]
 })
 export class UserModule { }
