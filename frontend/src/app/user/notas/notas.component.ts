@@ -11,7 +11,7 @@ import { Nota } from '../../models/nota';
 })
 export class NotasComponent implements OnInit {
 
-  notas: Array<Nota>= [];
+  notas: Array<Nota[]>= [];
 
   constructor(
     private notasService: NotasService,
@@ -26,7 +26,23 @@ export class NotasComponent implements OnInit {
   private getNotas(): void{
 
     this.notasService.getNotas().subscribe(
-      notas => this.notas= notas
+      notas => {
+        let notasLeft: Array<Nota>= [];
+        let notasRight: Array<Nota>= [];
+        let i: number= 1;
+        for(let nota of notas){
+          if(i % 2 == 0){
+
+            notasLeft.push(nota);
+          }else{
+
+            notasRight.push(nota);
+          }//end else
+          i++;
+        }//end for
+        this.notas= [notasRight, notasLeft];
+        console.log(this.notas);
+      }
     )
   }//end getNotas
 

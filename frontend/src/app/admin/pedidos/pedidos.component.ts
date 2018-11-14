@@ -27,7 +27,6 @@ export class PedidosComponent implements OnInit {
       pedidos => {
 
         this.pedidos= pedidos;
-        console.log(pedidos[0].getFecha());
       }//end closure
     );
   }//end getPedidos

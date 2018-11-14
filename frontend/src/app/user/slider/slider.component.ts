@@ -26,7 +26,6 @@ export class SliderComponent implements OnInit {
     this.sliderImgsService.getSliderImgs().subscribe(
       sliderImgs => {
         this.sliderImgs= sliderImgs;
-        console.log(sliderImgs);
       }
     );
   }//end getSliderImgs 

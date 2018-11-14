@@ -7,15 +7,22 @@
   </div>
 
   <div class="container">
-    <div class="nota-card" *ngFor="let nota of notas">
-      <div class="nota-media">
-        <img *ngIf="nota.getMedia() == 'imagen'" src="http://localhost/agua-poin/public/storage/{{ nota.getSrc() }}" alt="">
-        <iframe *ngIf="nota.getMedia() == 'video'" width="300" height="200" [src]="updateVideoUrl(nota.getSrc())" frameborder="0"></iframe>
-      </div>
-      <div class="nota-text text-center">
-        <h3>{{ nota.getTitulo() }}</h3>
-        <p>{{ nota.getCuerpo() }}</p>
+    <div class="row">
+      <div class="col-6" *ngFor="let notasSet of notas">
+        <div class="row">
+          <div class="col-12" *ngFor="let nota of notasSet">
+            <div class="card nota">
+              <div class="card-header text-center">
+                  <img *ngIf="nota.getMedia() == 'imagen'" src="http://localhost/agua-poin/public/storage/{{ nota.getSrc() }}" alt="">
+                  <iframe *ngIf="nota.getMedia() == 'video'" width="300" height="200" [src]="updateVideoUrl(nota.getSrc())" frameborder="0"></iframe>
+                <h2>{{ nota.getTitulo() }}</h2>
+              </div>
+              <div class="card-body">
+                <p>{{ nota.getCuerpo() }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>

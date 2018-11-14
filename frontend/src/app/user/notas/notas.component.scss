@@ -6,51 +6,75 @@
   color: #edf9fc;
 }
 
-.nota-card{
+.nota{
 
-  margin: 80px 0;
+  margin: 10px 0;
 }
 
-.nota-media img{
+.nota .card-header{
 
-  width: 140px;
-  height: 140px;
-}
+  position: relative;
+  padding: 0;
 
-.nota-media{
-
-  float: left;
-  margin: 10px;
-  border-radius: 70px;
-  overflow: hidden;
-}
-
-.nota-text{
-
-  float: left;
-  max-width: 60%;
-  background: #53cde2;
-  padding: 25px;
-  border-radius: 10px;
-  color: white;
-}
-
-.nota-card:nth-child(odd) {
-
-  .nota-media{
-
-    float: right;
+  img{
+    width: 100%;
   }
 
-  .nota-text{
+  h2{
 
-    float: right;
+    position: absolute;
+    bottom: 0;
+    color:white;
+    margin: 20px;
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
   }
 }
 
-.nota-card:after {
+// .nota-card{
 
-  content: '';
-  display: block;
-  clear: both;
-}
+//   margin: 80px 0;
+// }
+
+// .nota-media img{
+
+//   width: 140px;
+//   height: 140px;
+// }
+
+// .nota-media{
+
+//   float: left;
+//   margin: 10px;
+//   border-radius: 70px;
+//   overflow: hidden;
+// }
+
+// .nota-text{
+
+//   float: left;
+//   max-width: 60%;
+//   background: #53cde2;
+//   padding: 25px;
+//   border-radius: 10px;
+//   color: white;
+// }
+
+// .nota-card:nth-child(odd) {
+
+//   .nota-media{
+
+//     float: right;
+//   }
+
+//   .nota-text{
+
+//     float: right;
+//   }
+// }
+
+// .nota-card:after {
+
+//   content: '';
+//   display: block;
+//   clear: both;
+// }
