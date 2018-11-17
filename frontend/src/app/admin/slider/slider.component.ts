@@ -33,7 +33,7 @@ export class SliderComponent implements OnInit {
 
   private deleteSliderImg(id: number): void{
 
-    this.sliderImgs= this.sliderImgs.filter(nota => nota.getId() != id);
+    this.sliderImgs= this.sliderImgs.filter(sliderImg => sliderImg.getId() != id);
     this.sliderImgsService.deleteSliderImg(id).subscribe();
   }//end deleteSliderImg
 
