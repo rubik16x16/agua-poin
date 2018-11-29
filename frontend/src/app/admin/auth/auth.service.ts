@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Admin } from '../../models/admin';
-
+import * as moment from 'moment';
 @Injectable({
   providedIn: 'root'
 })
@@ -33,7 +33,29 @@ export class AuthService {
         tap(usuario => this.log(`usuario: ${usuario}`)),
         catchError(this.handleError('storeProducto', []))
       );
-  }
+  }//end login
+
+  setUserData(userToken: string, expirationTime: string): void{
+
+    localStorage.setItem('user_token', userToken);
+    localStorage.setItem('expires_at', expirationTime);
+  }//end setUserData
+
+  getUserToken(): string{
+
+    return localStorage.getItem('user_token');
+  }//end getUserToken
+
+  getExpirationTime(): any{
+
+    return moment.unix(+localStorage.getItem('expires_at'));
+  }//end getExpirationTime
+
+  logOut(): void{
+
+    localStorage.removeItem('user_token');
+    localStorage.removeItem('expires_at');
+  }//end logOut
 
   private handleError<T> (operation = 'operation', result?: T){
     return (error: any): Observable<T> => {

@@ -7,7 +7,7 @@ import {
 
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
-
+import * as moment from 'moment';
 @Injectable({
   providedIn: 'root'
 })
@@ -33,10 +33,12 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
   checkLogin(url: string): boolean {
 
-    if (localStorage.getItem('currentUser')) {
-      // logged in so return true
+    let expirationTime= moment.unix(this.authService.getExpirationTime());
+    
+    if(moment().isBefore(expirationTime) && this.authService.getUserToken() != null){
+
       return true;
-    }
+    }//end if
 
     // Store the attempted URL for redirecting
     this.authService.redirectUrl = url;
@@ -44,5 +46,5 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     // Navigate to the login page with extras
     this.router.navigate(['admin/login']);
     return false;
-  }
-}
+  }//end checkLogin
+}//end AuthGuardClass
