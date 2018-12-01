@@ -22,10 +22,14 @@ export class UserComponent implements OnInit {
 
       if(window.scrollY > 40){
         navbar.classList.remove("navbar-yellow");
+        navbar.classList.remove("navbar-light");
         navbar.classList.add("navbar-red");
+        navbar.classList.add("navbar-dark");
       }else{
         navbar.classList.remove("navbar-red");
+        navbar.classList.remove("navbar-dark");
         navbar.classList.add("navbar-yellow");
+        navbar.classList.add("navbar-light");
       }
     };
   }

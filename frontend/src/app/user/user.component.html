@@ -1,32 +1,34 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-yellow" id="navbar">
-  <a class="navbar-brand" href="javascript:void(0)" (click)="runScroll(0)">
-    <img src="assets/logo.png" height="50" class="d-inline-block align-top" alt="">
-    +589847365
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="javascript:void(0)" (click)="runScroll('notas-container')">Notas<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="javascript:void(0)" (click)="runScroll('productos-container')">Productos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="javascript:void(0)" (click)="runScroll('promociones-container')">Promociones</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="javascript:void(0)" (click)="runScroll('pedidos-container')">Pedidos</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-<app-slider></app-slider>
-<app-promociones></app-promociones>
-<app-pedidos></app-pedidos>
-<app-productos></app-productos>
-<app-notas></app-notas>
+<div class="user-container">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-yellow" id="navbar">
+    <a class="navbar-brand" href="javascript:void(0)" (click)="runScroll(0)">
+      <img src="assets/logo.png" height="50" class="d-inline-block align-top" alt="">
+      +589847365
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="javascript:void(0)" (click)="runScroll('notas-container')">Notas<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0)" (click)="runScroll('productos-container')">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0)" (click)="runScroll('promociones-container')">Promociones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0)" (click)="runScroll('pedidos-container')">Pedidos</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  <app-slider></app-slider>
+  <app-promociones></app-promociones>
+  <app-pedidos></app-pedidos>
+  <app-productos></app-productos>
+  <app-notas></app-notas>
+</div>

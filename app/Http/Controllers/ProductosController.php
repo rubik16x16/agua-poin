@@ -8,6 +8,17 @@ use App\Models\Producto;
 use Illuminate\Support\Facades\Storage;
 
 class ProductosController extends Controller{
+
+  /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct(){
+
+    $this->middleware('api-auth')->except('index');
+  }
+
   /**
    * Display a listing of the resource.
    *

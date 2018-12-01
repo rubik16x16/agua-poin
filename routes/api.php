@@ -17,12 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => ['api-auth']], function(){
-  Route::resource('notas', 'NotasController');
-  Route::resource('productos', 'ProductosController');
-  Route::resource('pedidos', 'PedidosController');
-  Route::resource('promociones', 'PromocionesController');
-  Route::resource('slider', 'SliderImgsController');
-});
+Route::resource('notas', 'NotasController');
+Route::resource('productos', 'ProductosController');
+Route::resource('pedidos', 'PedidosController');
+Route::resource('promociones', 'PromocionesController');
+Route::resource('slider', 'SliderImgsController');
 
 Route::post('admin/login', 'LoginController@login');

@@ -9,6 +9,16 @@ use Illuminate\Support\Facades\Storage;
 
 class PromocionesController extends Controller{
 
+  /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct(){
+
+    $this->middleware('api-auth')->except('index');
+  }
+
 	public function test(Request $request){
 
 		$videoId= substr(strrchr($request->str, '='), 1);

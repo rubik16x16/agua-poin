@@ -8,7 +8,18 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Nota;
 
 class NotasController extends Controller{
-	/**
+  
+  /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct(){
+
+    $this->middleware('api-auth')->except('index');
+  }
+
+  /**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response
